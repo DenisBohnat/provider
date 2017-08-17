@@ -1,0 +1,664 @@
+27/Ð¸ÑŽÐ½/2017 23:15:37,087- ConnectionPool: All necessary properties have been setted to the connection pool
+27/Ð¸ÑŽÐ½/2017 23:24:54,779- ConnectionPool: All necessary properties have been setted to the connection pool
+27/Ð¸ÑŽÐ½/2017 23:24:54,830- ConnectionPool: The database driver has been found
+27/Ð¸ÑŽÐ½/2017 23:24:56,163- ConnectionPool: SQLException happened in ConnectionPool
+java.sql.SQLException: The server time zone value 'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ (ï¿½ï¿½ï¿½ï¿½)' is unrecognized or represents more than one time zone. You must configure either the server or JDBC driver (via the serverTimezone configuration property) to use a more specifc time zone value if you want to utilize time zone support.
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:545) ~[mysql-connector-java-6.0.6.jar:6.0.6]
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:513) ~[mysql-connector-java-6.0.6.jar:6.0.6]
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:505) ~[mysql-connector-java-6.0.6.jar:6.0.6]
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:479) ~[mysql-connector-java-6.0.6.jar:6.0.6]
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:489) ~[mysql-connector-java-6.0.6.jar:6.0.6]
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:69) ~[mysql-connector-java-6.0.6.jar:6.0.6]
+	at com.mysql.cj.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:1606) ~[mysql-connector-java-6.0.6.jar:6.0.6]
+	at com.mysql.cj.jdbc.ConnectionImpl.<init>(ConnectionImpl.java:633) ~[mysql-connector-java-6.0.6.jar:6.0.6]
+	at com.mysql.cj.jdbc.ConnectionImpl.getInstance(ConnectionImpl.java:347) ~[mysql-connector-java-6.0.6.jar:6.0.6]
+	at com.mysql.cj.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:219) ~[mysql-connector-java-6.0.6.jar:6.0.6]
+	at java.sql.DriverManager.getConnection(DriverManager.java:664) ~[?:1.8.0_111]
+	at java.sql.DriverManager.getConnection(DriverManager.java:247) ~[?:1.8.0_111]
+	at by.epam.bohnat.provider.dao.pool.ConnectionPool.initConnectionPool(ConnectionPool.java:74) [classes/:?]
+	at by.epam.bohnat.provider.controller.Main.main(Main.java:22) [classes/:?]
+Caused by: com.mysql.cj.core.exceptions.InvalidConnectionAttributeException: The server time zone value 'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ (ï¿½ï¿½ï¿½ï¿½)' is unrecognized or represents more than one time zone. You must configure either the server or JDBC driver (via the serverTimezone configuration property) to use a more specifc time zone value if you want to utilize time zone support.
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method) ~[?:1.8.0_111]
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62) ~[?:1.8.0_111]
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45) ~[?:1.8.0_111]
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423) ~[?:1.8.0_111]
+	at com.mysql.cj.core.exceptions.ExceptionFactory.createException(ExceptionFactory.java:54) ~[mysql-connector-java-6.0.6.jar:6.0.6]
+	at com.mysql.cj.core.exceptions.ExceptionFactory.createException(ExceptionFactory.java:73) ~[mysql-connector-java-6.0.6.jar:6.0.6]
+	at com.mysql.cj.jdbc.util.TimeUtil.getCanonicalTimezone(TimeUtil.java:118) ~[mysql-connector-java-6.0.6.jar:6.0.6]
+	at com.mysql.cj.mysqla.MysqlaSession.configureTimezone(MysqlaSession.java:293) ~[mysql-connector-java-6.0.6.jar:6.0.6]
+	at com.mysql.cj.jdbc.ConnectionImpl.initializePropsFromServer(ConnectionImpl.java:2399) ~[mysql-connector-java-6.0.6.jar:6.0.6]
+	at com.mysql.cj.jdbc.ConnectionImpl.connectOneTryOnly(ConnectionImpl.java:1739) ~[mysql-connector-java-6.0.6.jar:6.0.6]
+	at com.mysql.cj.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:1596) ~[mysql-connector-java-6.0.6.jar:6.0.6]
+	... 7 more
+27/Ð¸ÑŽÐ½/2017 23:41:50,164- ConnectionPool: All necessary properties have been setted to the connection pool
+27/Ð¸ÑŽÐ½/2017 23:41:50,203- ConnectionPool: The database driver has been found
+27/Ð¸ÑŽÐ½/2017 23:41:55,008- ConnectionPool: SQLException happened in ConnectionPool
+java.sql.SQLNonTransientConnectionException: Could not create connection to database server. Attempted reconnect 3 times. Giving up.
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:526) ~[mysql-connector-java-6.0.6.jar:6.0.6]
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:513) ~[mysql-connector-java-6.0.6.jar:6.0.6]
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:505) ~[mysql-connector-java-6.0.6.jar:6.0.6]
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:479) ~[mysql-connector-java-6.0.6.jar:6.0.6]
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:489) ~[mysql-connector-java-6.0.6.jar:6.0.6]
+	at com.mysql.cj.jdbc.ConnectionImpl.connectWithRetries(ConnectionImpl.java:1677) ~[mysql-connector-java-6.0.6.jar:6.0.6]
+	at com.mysql.cj.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:1601) ~[mysql-connector-java-6.0.6.jar:6.0.6]
+	at com.mysql.cj.jdbc.ConnectionImpl.<init>(ConnectionImpl.java:633) ~[mysql-connector-java-6.0.6.jar:6.0.6]
+	at com.mysql.cj.jdbc.ConnectionImpl.getInstance(ConnectionImpl.java:347) ~[mysql-connector-java-6.0.6.jar:6.0.6]
+	at com.mysql.cj.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:219) ~[mysql-connector-java-6.0.6.jar:6.0.6]
+	at java.sql.DriverManager.getConnection(DriverManager.java:664) ~[?:1.8.0_111]
+	at java.sql.DriverManager.getConnection(DriverManager.java:247) ~[?:1.8.0_111]
+	at by.epam.bohnat.provider.dao.pool.ConnectionPool.initConnectionPool(ConnectionPool.java:74) [classes/:?]
+	at by.epam.bohnat.provider.controller.Main.main(Main.java:22) [classes/:?]
+Caused by: com.mysql.cj.core.exceptions.InvalidConnectionAttributeException: The server time zone value 'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ (ï¿½ï¿½ï¿½ï¿½)' is unrecognized or represents more than one time zone. You must configure either the server or JDBC driver (via the serverTimezone configuration property) to use a more specifc time zone value if you want to utilize time zone support.
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method) ~[?:1.8.0_111]
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62) ~[?:1.8.0_111]
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45) ~[?:1.8.0_111]
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423) ~[?:1.8.0_111]
+	at com.mysql.cj.core.exceptions.ExceptionFactory.createException(ExceptionFactory.java:54) ~[mysql-connector-java-6.0.6.jar:6.0.6]
+	at com.mysql.cj.core.exceptions.ExceptionFactory.createException(ExceptionFactory.java:73) ~[mysql-connector-java-6.0.6.jar:6.0.6]
+	at com.mysql.cj.jdbc.util.TimeUtil.getCanonicalTimezone(TimeUtil.java:118) ~[mysql-connector-java-6.0.6.jar:6.0.6]
+	at com.mysql.cj.mysqla.MysqlaSession.configureTimezone(MysqlaSession.java:293) ~[mysql-connector-java-6.0.6.jar:6.0.6]
+	at com.mysql.cj.jdbc.ConnectionImpl.initializePropsFromServer(ConnectionImpl.java:2399) ~[mysql-connector-java-6.0.6.jar:6.0.6]
+	at com.mysql.cj.jdbc.ConnectionImpl.connectWithRetries(ConnectionImpl.java:1642) ~[mysql-connector-java-6.0.6.jar:6.0.6]
+	... 8 more
+27/Ð¸ÑŽÐ½/2017 23:58:36,969- ConnectionPool: All necessary properties have been setted to the connection pool
+27/Ð¸ÑŽÐ½/2017 23:58:36,998- ConnectionPool: The database driver has been found
+27/Ð¸ÑŽÐ½/2017 23:58:41,756- ConnectionPool: SQLException happened in ConnectionPool
+java.sql.SQLNonTransientConnectionException: Could not create connection to database server. Attempted reconnect 3 times. Giving up.
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:526) ~[mysql-connector-java-6.0.6.jar:6.0.6]
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:513) ~[mysql-connector-java-6.0.6.jar:6.0.6]
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:505) ~[mysql-connector-java-6.0.6.jar:6.0.6]
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:479) ~[mysql-connector-java-6.0.6.jar:6.0.6]
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:489) ~[mysql-connector-java-6.0.6.jar:6.0.6]
+	at com.mysql.cj.jdbc.ConnectionImpl.connectWithRetries(ConnectionImpl.java:1677) ~[mysql-connector-java-6.0.6.jar:6.0.6]
+	at com.mysql.cj.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:1601) ~[mysql-connector-java-6.0.6.jar:6.0.6]
+	at com.mysql.cj.jdbc.ConnectionImpl.<init>(ConnectionImpl.java:633) ~[mysql-connector-java-6.0.6.jar:6.0.6]
+	at com.mysql.cj.jdbc.ConnectionImpl.getInstance(ConnectionImpl.java:347) ~[mysql-connector-java-6.0.6.jar:6.0.6]
+	at com.mysql.cj.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:219) ~[mysql-connector-java-6.0.6.jar:6.0.6]
+	at java.sql.DriverManager.getConnection(DriverManager.java:664) ~[?:1.8.0_111]
+	at java.sql.DriverManager.getConnection(DriverManager.java:247) ~[?:1.8.0_111]
+	at by.epam.bohnat.provider.dao.pool.ConnectionPool.initConnectionPool(ConnectionPool.java:74) [classes/:?]
+	at by.epam.bohnat.provider.controller.Main.main(Main.java:22) [classes/:?]
+Caused by: com.mysql.cj.core.exceptions.InvalidConnectionAttributeException: The server time zone value 'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ (ï¿½ï¿½ï¿½ï¿½)' is unrecognized or represents more than one time zone. You must configure either the server or JDBC driver (via the serverTimezone configuration property) to use a more specifc time zone value if you want to utilize time zone support.
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method) ~[?:1.8.0_111]
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62) ~[?:1.8.0_111]
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45) ~[?:1.8.0_111]
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423) ~[?:1.8.0_111]
+	at com.mysql.cj.core.exceptions.ExceptionFactory.createException(ExceptionFactory.java:54) ~[mysql-connector-java-6.0.6.jar:6.0.6]
+	at com.mysql.cj.core.exceptions.ExceptionFactory.createException(ExceptionFactory.java:73) ~[mysql-connector-java-6.0.6.jar:6.0.6]
+	at com.mysql.cj.jdbc.util.TimeUtil.getCanonicalTimezone(TimeUtil.java:118) ~[mysql-connector-java-6.0.6.jar:6.0.6]
+	at com.mysql.cj.mysqla.MysqlaSession.configureTimezone(MysqlaSession.java:293) ~[mysql-connector-java-6.0.6.jar:6.0.6]
+	at com.mysql.cj.jdbc.ConnectionImpl.initializePropsFromServer(ConnectionImpl.java:2399) ~[mysql-connector-java-6.0.6.jar:6.0.6]
+	at com.mysql.cj.jdbc.ConnectionImpl.connectWithRetries(ConnectionImpl.java:1642) ~[mysql-connector-java-6.0.6.jar:6.0.6]
+	... 8 more
+28/Ð¸ÑŽÐ½/2017 00:10:04,275- ConnectionPool: All necessary properties have been setted to the connection pool
+28/Ð¸ÑŽÐ½/2017 00:10:04,362- ConnectionPool: The database driver has been found
+28/Ð¸ÑŽÐ½/2017 00:10:09,249- ConnectionPool: SQLException happened in ConnectionPool
+java.sql.SQLNonTransientConnectionException: Could not create connection to database server. Attempted reconnect 3 times. Giving up.
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:526) ~[mysql-connector-java-6.0.6.jar:6.0.6]
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:513) ~[mysql-connector-java-6.0.6.jar:6.0.6]
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:505) ~[mysql-connector-java-6.0.6.jar:6.0.6]
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:479) ~[mysql-connector-java-6.0.6.jar:6.0.6]
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:489) ~[mysql-connector-java-6.0.6.jar:6.0.6]
+	at com.mysql.cj.jdbc.ConnectionImpl.connectWithRetries(ConnectionImpl.java:1677) ~[mysql-connector-java-6.0.6.jar:6.0.6]
+	at com.mysql.cj.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:1601) ~[mysql-connector-java-6.0.6.jar:6.0.6]
+	at com.mysql.cj.jdbc.ConnectionImpl.<init>(ConnectionImpl.java:633) ~[mysql-connector-java-6.0.6.jar:6.0.6]
+	at com.mysql.cj.jdbc.ConnectionImpl.getInstance(ConnectionImpl.java:347) ~[mysql-connector-java-6.0.6.jar:6.0.6]
+	at com.mysql.cj.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:219) ~[mysql-connector-java-6.0.6.jar:6.0.6]
+	at java.sql.DriverManager.getConnection(DriverManager.java:664) ~[?:1.8.0_111]
+	at java.sql.DriverManager.getConnection(DriverManager.java:247) ~[?:1.8.0_111]
+	at by.epam.bohnat.provider.dao.pool.ConnectionPool.initConnectionPool(ConnectionPool.java:74) [classes/:?]
+	at by.epam.bohnat.provider.controller.Main.main(Main.java:22) [classes/:?]
+Caused by: com.mysql.cj.core.exceptions.InvalidConnectionAttributeException: The server time zone value 'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ (ï¿½ï¿½ï¿½ï¿½)' is unrecognized or represents more than one time zone. You must configure either the server or JDBC driver (via the serverTimezone configuration property) to use a more specifc time zone value if you want to utilize time zone support.
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method) ~[?:1.8.0_111]
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62) ~[?:1.8.0_111]
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45) ~[?:1.8.0_111]
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423) ~[?:1.8.0_111]
+	at com.mysql.cj.core.exceptions.ExceptionFactory.createException(ExceptionFactory.java:54) ~[mysql-connector-java-6.0.6.jar:6.0.6]
+	at com.mysql.cj.core.exceptions.ExceptionFactory.createException(ExceptionFactory.java:73) ~[mysql-connector-java-6.0.6.jar:6.0.6]
+	at com.mysql.cj.jdbc.util.TimeUtil.getCanonicalTimezone(TimeUtil.java:118) ~[mysql-connector-java-6.0.6.jar:6.0.6]
+	at com.mysql.cj.mysqla.MysqlaSession.configureTimezone(MysqlaSession.java:293) ~[mysql-connector-java-6.0.6.jar:6.0.6]
+	at com.mysql.cj.jdbc.ConnectionImpl.initializePropsFromServer(ConnectionImpl.java:2399) ~[mysql-connector-java-6.0.6.jar:6.0.6]
+	at com.mysql.cj.jdbc.ConnectionImpl.connectWithRetries(ConnectionImpl.java:1642) ~[mysql-connector-java-6.0.6.jar:6.0.6]
+	... 8 more
+28/Ð¸ÑŽÐ½/2017 00:14:00,976- ConnectionPool: All necessary properties have been setted to the connection pool
+28/Ð¸ÑŽÐ½/2017 00:14:00,998- ConnectionPool: The database driver has been found
+28/Ð¸ÑŽÐ½/2017 00:14:01,792- ConnectionPool: The connections have been added to the connection pool
+28/Ð¸ÑŽÐ½/2017 00:14:01,801- ConnectionPool: The connection has been taken from the connection pool
+28/Ð¸ÑŽÐ½/2017 00:14:01,870- ConnectionPool: The connection has been returned to the connection pool
+02/Ð¸ÑŽÐ»/2017 22:21:52,941- ConnectionPool: All necessary properties have been setted to the connection pool
+02/Ð¸ÑŽÐ»/2017 22:21:53,022- ConnectionPool: The database driver has been found
+02/Ð¸ÑŽÐ»/2017 22:21:53,966- ConnectionPool: The connections have been added to the connection pool
+02/Ð¸ÑŽÐ»/2017 22:21:53,985- ConnectionPool: The connection has been taken from the connection pool
+02/Ð¸ÑŽÐ»/2017 22:21:54,032- ConnectionPool: The connection has been returned to the connection pool
+03/Ð¸ÑŽÐ»/2017 01:28:17,843- ConnectionPool: All necessary properties have been setted to the connection pool
+03/Ð¸ÑŽÐ»/2017 01:28:17,897- ConnectionPool: The database driver has been found
+03/Ð¸ÑŽÐ»/2017 01:28:19,225- ConnectionPool: The connections have been added to the connection pool
+03/Ð¸ÑŽÐ»/2017 01:28:19,279- ConnectionPool: The connection has been taken from the connection pool
+03/Ð¸ÑŽÐ»/2017 01:28:19,295- ConnectionPool: The connection has been returned to the connection pool
+03/Ð¸ÑŽÐ»/2017 01:29:12,453- ConnectionPool: All necessary properties have been setted to the connection pool
+03/Ð¸ÑŽÐ»/2017 01:29:12,484- ConnectionPool: The database driver has been found
+03/Ð¸ÑŽÐ»/2017 01:29:13,437- ConnectionPool: The connections have been added to the connection pool
+03/Ð¸ÑŽÐ»/2017 01:29:13,453- ConnectionPool: The connection has been taken from the connection pool
+03/Ð¸ÑŽÐ»/2017 01:29:13,484- ConnectionPool: The connection has been returned to the connection pool
+03/Ð¸ÑŽÐ»/2017 01:32:19,512- ConnectionPool: All necessary properties have been setted to the connection pool
+03/Ð¸ÑŽÐ»/2017 01:32:19,543- ConnectionPool: The database driver has been found
+03/Ð¸ÑŽÐ»/2017 01:32:20,465- ConnectionPool: The connections have been added to the connection pool
+03/Ð¸ÑŽÐ»/2017 01:32:20,481- ConnectionPool: The connection has been taken from the connection pool
+03/Ð¸ÑŽÐ»/2017 01:32:20,512- ConnectionPool: The connection has been returned to the connection pool
+03/Ð¸ÑŽÐ»/2017 01:32:45,820- ConnectionPool: All necessary properties have been setted to the connection pool
+03/Ð¸ÑŽÐ»/2017 01:32:45,843- ConnectionPool: The database driver has been found
+03/Ð¸ÑŽÐ»/2017 01:32:46,656- ConnectionPool: The connections have been added to the connection pool
+03/Ð¸ÑŽÐ»/2017 01:32:46,672- ConnectionPool: The connection has been taken from the connection pool
+03/Ð¸ÑŽÐ»/2017 01:32:46,687- ConnectionPool: The connection has been returned to the connection pool
+03/Ð¸ÑŽÐ»/2017 01:35:23,038- ConnectionPool: All necessary properties have been setted to the connection pool
+03/Ð¸ÑŽÐ»/2017 01:35:23,092- ConnectionPool: The database driver has been found
+03/Ð¸ÑŽÐ»/2017 01:35:23,905- ConnectionPool: The connections have been added to the connection pool
+03/Ð¸ÑŽÐ»/2017 01:35:23,920- ConnectionPool: The connection has been taken from the connection pool
+03/Ð¸ÑŽÐ»/2017 01:35:23,920- ConnectionPool: The connection has been returned to the connection pool
+11/Ð¸ÑŽÐ»/2017 19:49:16,739- ConnectionPool: All necessary properties have been setted to the connection pool
+11/Ð¸ÑŽÐ»/2017 19:49:16,801- ConnectionPool: The database driver has been found
+11/Ð¸ÑŽÐ»/2017 19:49:17,797- ConnectionPool: The connections have been added to the connection pool
+11/Ð¸ÑŽÐ»/2017 19:49:17,891- ConnectionPool: The connection has been taken from the connection pool
+11/Ð¸ÑŽÐ»/2017 19:49:17,906- ConnectionPool: The connection has been returned to the connection pool
+25/Ð¸ÑŽÐ»/2017 21:38:20,489- ConnectionPool: All necessary properties have been setted to the connection pool
+25/Ð¸ÑŽÐ»/2017 21:38:20,573- ConnectionPool: The database driver has been found
+25/Ð¸ÑŽÐ»/2017 21:38:21,995- ConnectionPool: The connections have been added to the connection pool
+25/Ð¸ÑŽÐ»/2017 21:38:22,023- ConnectionPool: The connection has been taken from the connection pool
+25/Ð¸ÑŽÐ»/2017 21:38:22,055- ConnectionPool: The connection has been returned to the connection pool
+27/èþë/2017 20:58:13,277- ConnectionPool: All necessary properties have been setted to the connection pool
+27/èþë/2017 20:58:13,796- ConnectionPool: The database driver has been found
+27/èþë/2017 20:58:19,619- ConnectionPool: The connections have been added to the connection pool
+27/èþë/2017 20:58:21,655- ConnectionPool: The connection has been taken from the connection pool
+27/èþë/2017 20:58:21,935- ConnectionPool: The connection has been returned to the connection pool
+27/èþë/2017 20:58:21,936- ConnectionPool: The connection has been taken from the connection pool
+27/èþë/2017 20:58:23,645- ConnectionPool: The connection has been returned to the connection pool
+27/èþë/2017 20:58:23,646- ConnectionPool: The connection has been taken from the connection pool
+27/èþë/2017 20:58:23,681- ConnectionPool: The connection has been returned to the connection pool
+27/èþë/2017 20:58:23,682- ConnectionPool: The connection has been taken from the connection pool
+27/èþë/2017 20:58:24,261- ConnectionPool: The connection has been returned to the connection pool
+27/èþë/2017 20:58:24,268- ConnectionPool: The connection pool has been destroyed
+27/èþë/2017 21:11:53,436- ConnectionPool: All necessary properties have been setted to the connection pool
+27/èþë/2017 21:11:53,593- ConnectionPool: The database driver has been found
+27/èþë/2017 21:11:54,714- ConnectionPool: The connections have been added to the connection pool
+27/èþë/2017 21:11:54,727- ConnectionPool: The connection has been taken from the connection pool
+27/èþë/2017 21:11:54,749- ConnectionPool: The connection has been returned to the connection pool
+27/èþë/2017 21:11:54,752- ConnectionPool: The connection has been taken from the connection pool
+27/èþë/2017 21:11:55,423- ConnectionPool: The connection has been returned to the connection pool
+27/èþë/2017 21:11:55,424- ConnectionPool: The connection has been taken from the connection pool
+27/èþë/2017 21:11:55,706- ConnectionPool: The connection has been returned to the connection pool
+27/èþë/2017 21:11:55,707- ConnectionPool: The connection has been taken from the connection pool
+27/èþë/2017 21:11:57,050- ConnectionPool: The connection has been returned to the connection pool
+27/èþë/2017 21:11:57,051- ConnectionPool: The connection has been taken from the connection pool
+27/èþë/2017 21:11:57,153- ConnectionPool: The connection has been returned to the connection pool
+27/èþë/2017 21:11:57,156- ConnectionPool: The connection has been taken from the connection pool
+27/èþë/2017 21:11:57,161- ConnectionPool: The connection has been returned to the connection pool
+27/èþë/2017 21:11:57,162- ConnectionPool: The connection has been taken from the connection pool
+27/èþë/2017 21:11:57,531- ConnectionPool: The connection has been returned to the connection pool
+27/èþë/2017 21:11:57,532- ConnectionPool: The connection has been taken from the connection pool
+27/èþë/2017 21:11:57,537- ConnectionPool: The connection has been returned to the connection pool
+27/èþë/2017 21:11:57,539- ConnectionPool: The connection has been taken from the connection pool
+27/èþë/2017 21:11:57,543- ConnectionPool: The connection has been returned to the connection pool
+27/èþë/2017 21:11:57,544- ConnectionPool: The connection has been taken from the connection pool
+27/èþë/2017 21:11:57,812- ConnectionPool: The connection has been returned to the connection pool
+27/èþë/2017 21:11:57,819- ConnectionPool: The connection pool has been destroyed
+27/èþë/2017 21:19:44,328- ConnectionPool: All necessary properties have been setted to the connection pool
+27/èþë/2017 21:19:44,409- ConnectionPool: The database driver has been found
+27/èþë/2017 21:19:45,811- ConnectionPool: The connections have been added to the connection pool
+27/èþë/2017 21:19:45,914- ConnectionPool: The connection has been taken from the connection pool
+27/èþë/2017 21:19:45,965- ConnectionPool: The connection has been returned to the connection pool
+27/èþë/2017 21:19:45,965- ConnectionPool: The connection has been taken from the connection pool
+27/èþë/2017 21:19:46,068- ConnectionPool: The connection has been returned to the connection pool
+27/èþë/2017 21:19:46,069- ConnectionPool: The connection has been taken from the connection pool
+27/èþë/2017 21:19:46,077- ConnectionPool: The connection has been returned to the connection pool
+27/èþë/2017 21:19:46,079- ConnectionPool: The connection has been taken from the connection pool
+27/èþë/2017 21:19:46,139- ConnectionPool: The connection has been returned to the connection pool
+27/èþë/2017 21:19:46,140- ConnectionPool: The connection has been taken from the connection pool
+27/èþë/2017 21:19:46,178- ConnectionPool: The connection has been returned to the connection pool
+27/èþë/2017 21:19:46,180- ConnectionPool: The connection has been taken from the connection pool
+27/èþë/2017 21:19:46,242- ConnectionPool: The connection has been returned to the connection pool
+27/èþë/2017 21:19:46,278- ConnectionPool: The connection has been taken from the connection pool
+27/èþë/2017 21:19:46,288- ConnectionPool: The connection has been returned to the connection pool
+27/èþë/2017 21:19:46,289- ConnectionPool: The connection has been taken from the connection pool
+27/èþë/2017 21:19:46,346- ConnectionPool: The connection has been returned to the connection pool
+27/èþë/2017 21:19:46,347- ConnectionPool: The connection has been taken from the connection pool
+27/èþë/2017 21:19:46,432- ConnectionPool: The connection has been returned to the connection pool
+27/èþë/2017 21:19:46,432- ConnectionPool: The connection has been taken from the connection pool
+27/èþë/2017 21:19:46,467- ConnectionPool: The connection has been returned to the connection pool
+27/èþë/2017 21:19:46,468- ConnectionPool: The connection has been taken from the connection pool
+27/èþë/2017 21:19:46,472- ConnectionPool: The connection has been returned to the connection pool
+27/èþë/2017 21:19:46,473- ConnectionPool: The connection has been taken from the connection pool
+27/èþë/2017 21:19:46,476- ConnectionPool: The connection has been returned to the connection pool
+27/èþë/2017 21:19:46,477- ConnectionPool: The connection has been taken from the connection pool
+27/èþë/2017 21:19:46,512- ConnectionPool: The connection has been returned to the connection pool
+27/èþë/2017 21:19:46,513- ConnectionPool: The connection has been taken from the connection pool
+27/èþë/2017 21:19:46,529- ConnectionPool: The connection has been returned to the connection pool
+27/èþë/2017 21:19:46,532- ConnectionPool: The connection has been taken from the connection pool
+27/èþë/2017 21:19:46,538- ConnectionPool: The connection has been returned to the connection pool
+27/èþë/2017 21:19:46,538- ConnectionPool: The connection has been taken from the connection pool
+27/èþë/2017 21:19:46,567- ConnectionPool: The connection has been returned to the connection pool
+27/èþë/2017 21:19:46,571- ConnectionPool: The connection pool has been destroyed
+27/èþë/2017 21:29:02,108- ConnectionPool: All necessary properties have been setted to the connection pool
+27/èþë/2017 21:29:02,157- ConnectionPool: The database driver has been found
+27/èþë/2017 21:29:02,928- ConnectionPool: The connections have been added to the connection pool
+27/èþë/2017 21:29:02,943- ConnectionPool: The connection has been taken from the connection pool
+27/èþë/2017 21:29:02,963- ConnectionPool: The connection has been returned to the connection pool
+27/èþë/2017 21:29:02,969- ConnectionPool: The connection has been taken from the connection pool
+27/èþë/2017 21:29:03,086- ConnectionPool: The connection has been returned to the connection pool
+27/èþë/2017 21:29:03,087- ConnectionPool: The connection has been taken from the connection pool
+27/èþë/2017 21:29:03,098- ConnectionPool: The connection has been returned to the connection pool
+27/èþë/2017 21:29:03,099- ConnectionPool: The connection has been taken from the connection pool
+27/èþë/2017 21:29:03,167- ConnectionPool: The connection has been returned to the connection pool
+27/èþë/2017 21:29:03,168- ConnectionPool: The connection has been taken from the connection pool
+27/èþë/2017 21:29:03,172- ConnectionPool: The connection has been returned to the connection pool
+27/èþë/2017 21:29:03,172- ConnectionPool: The connection has been taken from the connection pool
+27/èþë/2017 21:29:03,208- ConnectionPool: The connection has been returned to the connection pool
+27/èþë/2017 21:29:03,211- ConnectionPool: The connection has been taken from the connection pool
+27/èþë/2017 21:29:03,223- ConnectionPool: The connection has been returned to the connection pool
+27/èþë/2017 21:29:03,224- ConnectionPool: The connection has been taken from the connection pool
+27/èþë/2017 21:29:03,267- ConnectionPool: The connection has been returned to the connection pool
+27/èþë/2017 21:29:03,267- ConnectionPool: The connection has been taken from the connection pool
+27/èþë/2017 21:29:03,355- ConnectionPool: The connection has been returned to the connection pool
+27/èþë/2017 21:29:03,356- ConnectionPool: The connection has been taken from the connection pool
+27/èþë/2017 21:29:03,418- ConnectionPool: The connection has been returned to the connection pool
+27/èþë/2017 21:29:03,419- ConnectionPool: The connection has been taken from the connection pool
+27/èþë/2017 21:29:03,421- ConnectionPool: The connection has been returned to the connection pool
+27/èþë/2017 21:29:03,422- ConnectionPool: The connection has been taken from the connection pool
+27/èþë/2017 21:29:03,429- ConnectionPool: The connection has been returned to the connection pool
+27/èþë/2017 21:29:03,430- ConnectionPool: The connection has been taken from the connection pool
+27/èþë/2017 21:29:03,460- ConnectionPool: The connection has been returned to the connection pool
+27/èþë/2017 21:29:03,461- ConnectionPool: The connection has been taken from the connection pool
+27/èþë/2017 21:29:03,465- ConnectionPool: The connection has been returned to the connection pool
+27/èþë/2017 21:29:03,468- ConnectionPool: The connection has been taken from the connection pool
+27/èþë/2017 21:29:03,472- ConnectionPool: The connection has been returned to the connection pool
+27/èþë/2017 21:29:03,472- ConnectionPool: The connection has been taken from the connection pool
+27/èþë/2017 21:29:03,496- ConnectionPool: The connection has been returned to the connection pool
+27/èþë/2017 21:29:03,499- ConnectionPool: The connection pool has been destroyed
+27/èþë/2017 21:39:36,416- ConnectionPool: All necessary properties have been setted to the connection pool
+27/èþë/2017 21:39:36,464- ConnectionPool: The database driver has been found
+27/èþë/2017 21:39:37,454- ConnectionPool: The connections have been added to the connection pool
+27/èþë/2017 21:39:37,481- ConnectionPool: The connection has been taken from the connection pool
+27/èþë/2017 21:39:37,497- ConnectionPool: The connection has been returned to the connection pool
+27/èþë/2017 21:39:37,498- ConnectionPool: The connection has been taken from the connection pool
+27/èþë/2017 21:39:37,631- ConnectionPool: The connection has been returned to the connection pool
+27/èþë/2017 21:39:37,632- ConnectionPool: The connection has been taken from the connection pool
+27/èþë/2017 21:39:37,638- ConnectionPool: The connection has been returned to the connection pool
+27/èþë/2017 21:39:37,640- ConnectionPool: The connection has been taken from the connection pool
+27/èþë/2017 21:39:37,680- ConnectionPool: The connection has been returned to the connection pool
+27/èþë/2017 21:39:37,681- ConnectionPool: The connection has been taken from the connection pool
+27/èþë/2017 21:39:37,684- ConnectionPool: The connection has been returned to the connection pool
+27/èþë/2017 21:39:37,685- ConnectionPool: The connection has been taken from the connection pool
+27/èþë/2017 21:39:37,727- ConnectionPool: The connection has been returned to the connection pool
+27/èþë/2017 21:39:37,730- ConnectionPool: The connection has been taken from the connection pool
+27/èþë/2017 21:39:37,735- ConnectionPool: The connection has been returned to the connection pool
+27/èþë/2017 21:39:37,735- ConnectionPool: The connection has been taken from the connection pool
+27/èþë/2017 21:39:37,764- ConnectionPool: The connection has been returned to the connection pool
+27/èþë/2017 21:39:37,765- ConnectionPool: The connection has been taken from the connection pool
+27/èþë/2017 21:39:37,832- ConnectionPool: The connection has been returned to the connection pool
+27/èþë/2017 21:39:37,832- ConnectionPool: The connection has been taken from the connection pool
+27/èþë/2017 21:39:37,863- ConnectionPool: The connection has been returned to the connection pool
+27/èþë/2017 21:39:37,864- ConnectionPool: The connection has been taken from the connection pool
+27/èþë/2017 21:39:37,866- ConnectionPool: The connection has been returned to the connection pool
+27/èþë/2017 21:39:37,868- ConnectionPool: The connection has been taken from the connection pool
+27/èþë/2017 21:39:37,871- ConnectionPool: The connection has been returned to the connection pool
+27/èþë/2017 21:39:37,871- ConnectionPool: The connection has been taken from the connection pool
+27/èþë/2017 21:39:37,897- ConnectionPool: The connection has been returned to the connection pool
+27/èþë/2017 21:39:37,898- ConnectionPool: The connection has been taken from the connection pool
+27/èþë/2017 21:39:37,900- ConnectionPool: The connection has been returned to the connection pool
+27/èþë/2017 21:39:37,903- ConnectionPool: The connection has been taken from the connection pool
+27/èþë/2017 21:39:37,905- ConnectionPool: The connection has been returned to the connection pool
+27/èþë/2017 21:39:37,906- ConnectionPool: The connection has been taken from the connection pool
+27/èþë/2017 21:39:37,942- ConnectionPool: The connection has been returned to the connection pool
+27/èþë/2017 21:39:37,947- ConnectionPool: The connection pool has been destroyed
+27/èþë/2017 21:40:30,295- ConnectionPool: All necessary properties have been setted to the connection pool
+27/èþë/2017 21:40:30,397- ConnectionPool: The database driver has been found
+27/èþë/2017 21:40:31,434- ConnectionPool: The connections have been added to the connection pool
+27/èþë/2017 21:40:31,449- ConnectionPool: The connection has been taken from the connection pool
+27/èþë/2017 21:40:31,461- ConnectionPool: The connection has been returned to the connection pool
+27/èþë/2017 21:40:31,462- ConnectionPool: The connection has been taken from the connection pool
+27/èþë/2017 21:40:31,576- ConnectionPool: The connection has been returned to the connection pool
+27/èþë/2017 21:40:31,577- ConnectionPool: The connection has been taken from the connection pool
+27/èþë/2017 21:40:31,586- ConnectionPool: The connection has been returned to the connection pool
+27/èþë/2017 21:40:31,587- ConnectionPool: The connection has been taken from the connection pool
+27/èþë/2017 21:40:31,614- ConnectionPool: The connection has been returned to the connection pool
+27/èþë/2017 21:40:31,616- ConnectionPool: The connection has been taken from the connection pool
+27/èþë/2017 21:40:31,621- ConnectionPool: The connection has been returned to the connection pool
+27/èþë/2017 21:40:31,622- ConnectionPool: The connection has been taken from the connection pool
+27/èþë/2017 21:40:31,657- ConnectionPool: The connection has been returned to the connection pool
+27/èþë/2017 21:40:31,660- ConnectionPool: The connection has been taken from the connection pool
+27/èþë/2017 21:40:31,673- ConnectionPool: The connection has been returned to the connection pool
+27/èþë/2017 21:40:31,673- ConnectionPool: The connection has been taken from the connection pool
+27/èþë/2017 21:40:31,717- ConnectionPool: The connection has been returned to the connection pool
+27/èþë/2017 21:40:31,718- ConnectionPool: The connection has been taken from the connection pool
+27/èþë/2017 21:40:31,780- ConnectionPool: The connection has been returned to the connection pool
+27/èþë/2017 21:40:31,781- ConnectionPool: The connection has been taken from the connection pool
+27/èþë/2017 21:40:31,824- ConnectionPool: The connection has been returned to the connection pool
+27/èþë/2017 21:40:31,824- ConnectionPool: The connection has been taken from the connection pool
+27/èþë/2017 21:40:31,826- ConnectionPool: The connection has been returned to the connection pool
+27/èþë/2017 21:40:31,830- ConnectionPool: The connection has been taken from the connection pool
+27/èþë/2017 21:40:31,836- ConnectionPool: The connection has been returned to the connection pool
+27/èþë/2017 21:40:31,837- ConnectionPool: The connection has been taken from the connection pool
+27/èþë/2017 21:40:31,869- ConnectionPool: The connection has been returned to the connection pool
+27/èþë/2017 21:40:31,869- ConnectionPool: The connection has been taken from the connection pool
+27/èþë/2017 21:40:31,872- ConnectionPool: The connection has been returned to the connection pool
+27/èþë/2017 21:40:31,873- ConnectionPool: The connection has been taken from the connection pool
+27/èþë/2017 21:40:31,875- ConnectionPool: The connection has been returned to the connection pool
+27/èþë/2017 21:40:31,876- ConnectionPool: The connection has been taken from the connection pool
+27/èþë/2017 21:40:31,902- ConnectionPool: The connection has been returned to the connection pool
+27/èþë/2017 21:40:31,904- ConnectionPool: The connection has been taken from the connection pool
+27/èþë/2017 21:40:31,907- ConnectionPool: The connection has been returned to the connection pool
+27/èþë/2017 21:40:31,907- ConnectionPool: The connection has been taken from the connection pool
+27/èþë/2017 21:40:31,923- ConnectionPool: The connection has been returned to the connection pool
+27/èþë/2017 21:40:31,924- ConnectionPool: The connection has been taken from the connection pool
+27/èþë/2017 21:40:31,927- ConnectionPool: The connection has been returned to the connection pool
+27/èþë/2017 21:40:31,930- ConnectionPool: The connection pool has been destroyed
+27/èþë/2017 22:46:05,981- ConnectionPool: All necessary properties have been setted to the connection pool
+27/èþë/2017 22:46:06,029- ConnectionPool: The database driver has been found
+27/èþë/2017 22:46:06,946- ConnectionPool: The connections have been added to the connection pool
+27/èþë/2017 22:46:06,964- ConnectionPool: The connection pool has been destroyed
+27/èþë/2017 22:50:13,222- ConnectionPool: All necessary properties have been setted to the connection pool
+27/èþë/2017 22:50:13,285- ConnectionPool: The database driver has been found
+27/èþë/2017 22:50:14,203- ConnectionPool: The connections have been added to the connection pool
+27/èþë/2017 22:50:14,387- ConnectionPool: The connection has been taken from the connection pool
+27/èþë/2017 22:50:14,476- ConnectionPool: The connection has been returned to the connection pool
+27/èþë/2017 22:50:14,477- ConnectionPool: The connection has been taken from the connection pool
+27/èþë/2017 22:50:14,587- ConnectionPool: The connection has been returned to the connection pool
+27/èþë/2017 22:50:14,588- ConnectionPool: The connection has been taken from the connection pool
+27/èþë/2017 22:50:14,627- ConnectionPool: The connection has been returned to the connection pool
+27/èþë/2017 22:50:14,628- ConnectionPool: The connection has been taken from the connection pool
+27/èþë/2017 22:50:14,638- ConnectionPool: The connection has been returned to the connection pool
+27/èþë/2017 22:50:14,639- ConnectionPool: The connection has been taken from the connection pool
+27/èþë/2017 22:50:14,702- ConnectionPool: The connection has been returned to the connection pool
+27/èþë/2017 22:50:14,707- ConnectionPool: The connection pool has been destroyed
+27/èþë/2017 23:10:57,182- ConnectionPool: All necessary properties have been setted to the connection pool
+27/èþë/2017 23:10:57,226- ConnectionPool: The database driver has been found
+27/èþë/2017 23:10:58,066- ConnectionPool: The connections have been added to the connection pool
+27/èþë/2017 23:10:58,210- ConnectionPool: The connection has been taken from the connection pool
+27/èþë/2017 23:10:58,273- ConnectionPool: The connection has been returned to the connection pool
+27/èþë/2017 23:10:58,274- ConnectionPool: The connection has been taken from the connection pool
+27/èþë/2017 23:10:58,414- ConnectionPool: The connection has been returned to the connection pool
+27/èþë/2017 23:10:58,415- ConnectionPool: The connection has been taken from the connection pool
+27/èþë/2017 23:10:58,588- ConnectionPool: The connection has been returned to the connection pool
+27/èþë/2017 23:10:58,589- ConnectionPool: The connection has been taken from the connection pool
+27/èþë/2017 23:10:58,639- ConnectionPool: The connection has been returned to the connection pool
+27/èþë/2017 23:10:58,640- ConnectionPool: The connection has been taken from the connection pool
+27/èþë/2017 23:10:58,694- ConnectionPool: The connection has been returned to the connection pool
+27/èþë/2017 23:10:58,696- ConnectionPool: The connection has been taken from the connection pool
+27/èþë/2017 23:10:58,706- ConnectionPool: The connection has been returned to the connection pool
+27/èþë/2017 23:10:58,707- ConnectionPool: The connection has been taken from the connection pool
+27/èþë/2017 23:10:58,744- ConnectionPool: The connection has been returned to the connection pool
+27/èþë/2017 23:10:58,745- ConnectionPool: The connection has been taken from the connection pool
+27/èþë/2017 23:10:58,759- ConnectionPool: The connection has been returned to the connection pool
+27/èþë/2017 23:10:58,760- ConnectionPool: The connection has been taken from the connection pool
+27/èþë/2017 23:10:58,763- ConnectionPool: The connection has been returned to the connection pool
+27/èþë/2017 23:10:58,763- ConnectionPool: The connection has been taken from the connection pool
+27/èþë/2017 23:10:58,819- ConnectionPool: The connection has been returned to the connection pool
+27/èþë/2017 23:10:58,821- ConnectionPool: The connection has been taken from the connection pool
+27/èþë/2017 23:10:58,829- ConnectionPool: The connection has been returned to the connection pool
+27/èþë/2017 23:10:58,829- ConnectionPool: The connection has been taken from the connection pool
+27/èþë/2017 23:10:58,895- ConnectionPool: The connection has been returned to the connection pool
+27/èþë/2017 23:10:58,896- ConnectionPool: The connection has been taken from the connection pool
+27/èþë/2017 23:10:58,902- ConnectionPool: The connection has been returned to the connection pool
+27/èþë/2017 23:10:58,903- ConnectionPool: The connection has been taken from the connection pool
+27/èþë/2017 23:10:58,965- ConnectionPool: The connection has been returned to the connection pool
+27/èþë/2017 23:10:58,966- ConnectionPool: The connection has been taken from the connection pool
+27/èþë/2017 23:10:58,969- ConnectionPool: The connection has been returned to the connection pool
+27/èþë/2017 23:10:58,970- ConnectionPool: The connection has been taken from the connection pool
+27/èþë/2017 23:10:58,999- ConnectionPool: The connection has been returned to the connection pool
+27/èþë/2017 23:10:59,000- ConnectionPool: The connection has been taken from the connection pool
+27/èþë/2017 23:10:59,003- ConnectionPool: The connection has been returned to the connection pool
+27/èþë/2017 23:10:59,004- ConnectionPool: The connection has been taken from the connection pool
+27/èþë/2017 23:10:59,032- ConnectionPool: The connection has been returned to the connection pool
+27/èþë/2017 23:10:59,033- ConnectionPool: The connection has been taken from the connection pool
+27/èþë/2017 23:10:59,037- ConnectionPool: The connection has been returned to the connection pool
+27/èþë/2017 23:10:59,038- ConnectionPool: The connection has been taken from the connection pool
+27/èþë/2017 23:10:59,053- ConnectionPool: The connection has been returned to the connection pool
+27/èþë/2017 23:10:59,054- ConnectionPool: The connection has been taken from the connection pool
+27/èþë/2017 23:10:59,100- ConnectionPool: The connection has been returned to the connection pool
+27/èþë/2017 23:10:59,101- ConnectionPool: The connection has been taken from the connection pool
+27/èþë/2017 23:10:59,109- ConnectionPool: The connection has been returned to the connection pool
+27/èþë/2017 23:10:59,110- ConnectionPool: The connection has been taken from the connection pool
+27/èþë/2017 23:10:59,146- ConnectionPool: The connection has been returned to the connection pool
+27/èþë/2017 23:10:59,147- ConnectionPool: The connection has been taken from the connection pool
+27/èþë/2017 23:10:59,157- ConnectionPool: The connection has been returned to the connection pool
+27/èþë/2017 23:10:59,161- ConnectionPool: The connection has been taken from the connection pool
+27/èþë/2017 23:10:59,190- ConnectionPool: The connection has been returned to the connection pool
+27/èþë/2017 23:10:59,191- ConnectionPool: The connection has been taken from the connection pool
+27/èþë/2017 23:10:59,199- ConnectionPool: The connection has been returned to the connection pool
+27/èþë/2017 23:10:59,205- ConnectionPool: The connection pool has been destroyed
+28/èþë/2017 23:10:37,006- ConnectionPool: All necessary properties have been setted to the connection pool
+28/èþë/2017 23:10:37,047- ConnectionPool: The database driver has been found
+28/èþë/2017 23:10:40,903- ConnectionPool: The connections have been added to the connection pool
+28/èþë/2017 23:10:40,956- ConnectionPool: The connection pool has been destroyed
+28/èþë/2017 23:11:20,789- ConnectionPool: All necessary properties have been setted to the connection pool
+28/èþë/2017 23:11:20,842- ConnectionPool: The database driver has been found
+28/èþë/2017 23:11:21,805- ConnectionPool: The connections have been added to the connection pool
+28/èþë/2017 23:11:22,255- ConnectionPool: The connection pool has been destroyed
+28/èþë/2017 23:17:58,627- ConnectionPool: All necessary properties have been setted to the connection pool
+28/èþë/2017 23:17:58,666- ConnectionPool: The database driver has been found
+28/èþë/2017 23:17:59,563- ConnectionPool: The connections have been added to the connection pool
+28/èþë/2017 23:18:00,450- ConnectionPool: The connection pool has been destroyed
+28/èþë/2017 23:26:12,106- ConnectionPool: All necessary properties have been setted to the connection pool
+28/èþë/2017 23:26:12,145- ConnectionPool: The database driver has been found
+28/èþë/2017 23:26:12,957- ConnectionPool: The connections have been added to the connection pool
+28/èþë/2017 23:26:13,249- ConnectionPool: The connection has been taken from the connection pool
+28/èþë/2017 23:26:13,396- ConnectionPool: The connection has been returned to the connection pool
+28/èþë/2017 23:26:13,397- ConnectionPool: The connection has been taken from the connection pool
+28/èþë/2017 23:26:14,154- ConnectionPool: The connection has been returned to the connection pool
+28/èþë/2017 23:26:14,258- ConnectionPool: The connection pool has been destroyed
+28/èþë/2017 23:27:34,131- ConnectionPool: All necessary properties have been setted to the connection pool
+28/èþë/2017 23:27:34,168- ConnectionPool: The database driver has been found
+28/èþë/2017 23:27:34,926- ConnectionPool: The connections have been added to the connection pool
+28/èþë/2017 23:27:34,954- ConnectionPool: The connection pool has been destroyed
+28/èþë/2017 23:52:44,635- ConnectionPool: All necessary properties have been setted to the connection pool
+28/èþë/2017 23:52:44,685- ConnectionPool: The database driver has been found
+28/èþë/2017 23:52:45,510- ConnectionPool: The connections have been added to the connection pool
+28/èþë/2017 23:52:45,801- ConnectionPool: The connection has been taken from the connection pool
+28/èþë/2017 23:52:45,994- ConnectionPool: The connection has been returned to the connection pool
+28/èþë/2017 23:52:46,001- ConnectionPool: The connection pool has been destroyed
+28/èþë/2017 23:54:28,072- ConnectionPool: All necessary properties have been setted to the connection pool
+28/èþë/2017 23:54:28,122- ConnectionPool: The database driver has been found
+28/èþë/2017 23:54:29,018- ConnectionPool: The connections have been added to the connection pool
+28/èþë/2017 23:54:29,094- ConnectionPool: The connection pool has been destroyed
+28/èþë/2017 23:55:10,740- ConnectionPool: All necessary properties have been setted to the connection pool
+28/èþë/2017 23:55:10,806- ConnectionPool: The database driver has been found
+28/èþë/2017 23:55:11,866- ConnectionPool: The connections have been added to the connection pool
+28/èþë/2017 23:55:12,539- ConnectionPool: The connection has been taken from the connection pool
+28/èþë/2017 23:55:12,621- ConnectionPool: The connection has been returned to the connection pool
+28/èþë/2017 23:55:12,656- ConnectionPool: The connection pool has been destroyed
+29/Ð¸ÑŽÐ»/2017 00:00:05,509- ConnectionPool: All necessary properties have been setted to the connection pool
+29/Ð¸ÑŽÐ»/2017 00:00:05,539- ConnectionPool: The database driver has been found
+29/Ð¸ÑŽÐ»/2017 00:00:07,367- ConnectionPool: The connections have been added to the connection pool
+29/Ð¸ÑŽÐ»/2017 00:00:07,696- ConnectionPool: The connection has been taken from the connection pool
+29/Ð¸ÑŽÐ»/2017 00:00:07,747- ConnectionPool: The connection has been returned to the connection pool
+29/èþë/2017 00:05:22,124- ConnectionPool: All necessary properties have been setted to the connection pool
+29/èþë/2017 00:05:22,171- ConnectionPool: The database driver has been found
+29/èþë/2017 00:05:23,416- ConnectionPool: The connections have been added to the connection pool
+29/èþë/2017 00:05:24,070- ConnectionPool: The connection has been taken from the connection pool
+29/èþë/2017 00:05:24,206- ConnectionPool: The connection has been returned to the connection pool
+29/èþë/2017 00:05:24,207- ConnectionPool: The connection has been taken from the connection pool
+29/èþë/2017 00:05:24,375- ConnectionPool: The connection has been returned to the connection pool
+29/èþë/2017 00:05:24,389- ConnectionPool: The connection has been taken from the connection pool
+29/èþë/2017 00:05:24,449- ConnectionPool: The connection has been returned to the connection pool
+29/èþë/2017 00:05:24,457- ConnectionPool: The connection pool has been destroyed
+29/èþë/2017 00:05:50,669- ConnectionPool: All necessary properties have been setted to the connection pool
+29/èþë/2017 00:05:50,717- ConnectionPool: The database driver has been found
+29/èþë/2017 00:05:51,977- ConnectionPool: The connections have been added to the connection pool
+29/èþë/2017 00:05:52,493- ConnectionPool: The connection has been taken from the connection pool
+29/èþë/2017 00:05:52,546- ConnectionPool: The connection has been returned to the connection pool
+29/èþë/2017 00:05:52,553- ConnectionPool: The connection pool has been destroyed
+29/èþë/2017 00:07:58,891- ConnectionPool: All necessary properties have been setted to the connection pool
+29/èþë/2017 00:07:58,940- ConnectionPool: The database driver has been found
+29/èþë/2017 00:08:00,398- ConnectionPool: The connections have been added to the connection pool
+29/èþë/2017 00:08:01,106- ConnectionPool: The connection has been taken from the connection pool
+29/èþë/2017 00:08:01,220- ConnectionPool: The connection has been returned to the connection pool
+29/èþë/2017 00:08:01,221- ConnectionPool: The connection has been taken from the connection pool
+29/èþë/2017 00:08:01,321- ConnectionPool: The connection has been returned to the connection pool
+29/èþë/2017 00:08:01,338- ConnectionPool: The connection pool has been destroyed
+29/èþë/2017 00:09:28,865- ConnectionPool: All necessary properties have been setted to the connection pool
+29/èþë/2017 00:09:28,924- ConnectionPool: The database driver has been found
+29/èþë/2017 00:09:30,001- ConnectionPool: The connections have been added to the connection pool
+29/èþë/2017 00:09:30,196- ConnectionPool: The connection pool has been destroyed
+29/èþë/2017 00:11:09,845- ConnectionPool: All necessary properties have been setted to the connection pool
+29/èþë/2017 00:11:09,903- ConnectionPool: The database driver has been found
+29/èþë/2017 00:11:11,017- ConnectionPool: The connections have been added to the connection pool
+29/èþë/2017 00:11:11,554- ConnectionPool: The connection has been taken from the connection pool
+29/èþë/2017 00:11:11,647- ConnectionPool: The connection has been returned to the connection pool
+29/èþë/2017 00:11:11,648- ConnectionPool: The connection has been taken from the connection pool
+29/èþë/2017 00:11:11,720- ConnectionPool: The connection has been returned to the connection pool
+29/èþë/2017 00:11:11,750- ConnectionPool: The connection has been taken from the connection pool
+29/èþë/2017 00:11:11,853- ConnectionPool: The connection has been returned to the connection pool
+29/èþë/2017 00:11:11,863- ConnectionPool: The connection pool has been destroyed
+29/èþë/2017 00:13:04,125- ConnectionPool: All necessary properties have been setted to the connection pool
+29/èþë/2017 00:13:04,183- ConnectionPool: The database driver has been found
+29/èþë/2017 00:13:05,693- ConnectionPool: The connections have been added to the connection pool
+29/èþë/2017 00:13:05,744- ConnectionPool: The connection pool has been destroyed
+29/èþë/2017 00:15:39,421- ConnectionPool: All necessary properties have been setted to the connection pool
+29/èþë/2017 00:15:39,485- ConnectionPool: The database driver has been found
+29/èþë/2017 00:15:40,706- ConnectionPool: The connections have been added to the connection pool
+29/èþë/2017 00:15:40,792- ConnectionPool: The connection pool has been destroyed
+29/èþë/2017 14:34:38,115- ConnectionPool: All necessary properties have been setted to the connection pool
+29/èþë/2017 14:34:38,196- ConnectionPool: The database driver has been found
+29/èþë/2017 14:34:39,616- ConnectionPool: The connections have been added to the connection pool
+29/èþë/2017 14:34:40,041- ConnectionPool: The connection has been taken from the connection pool
+29/èþë/2017 14:34:40,146- ConnectionPool: The connection has been returned to the connection pool
+29/èþë/2017 14:34:40,161- ConnectionPool: The connection has been taken from the connection pool
+29/èþë/2017 14:34:40,224- ConnectionPool: The connection has been returned to the connection pool
+29/èþë/2017 14:34:40,271- ConnectionPool: The connection pool has been destroyed
+29/èþë/2017 14:35:28,075- ConnectionPool: All necessary properties have been setted to the connection pool
+29/èþë/2017 14:35:28,098- ConnectionPool: The database driver has been found
+29/èþë/2017 14:35:29,130- ConnectionPool: The connections have been added to the connection pool
+29/èþë/2017 14:35:29,526- ConnectionPool: The connection pool has been destroyed
+29/èþë/2017 14:39:43,132- ConnectionPool: All necessary properties have been setted to the connection pool
+29/èþë/2017 14:39:43,179- ConnectionPool: The database driver has been found
+29/èþë/2017 14:39:44,258- ConnectionPool: The connections have been added to the connection pool
+29/èþë/2017 14:39:44,642- ConnectionPool: The connection pool has been destroyed
+29/èþë/2017 14:46:45,384- ConnectionPool: All necessary properties have been setted to the connection pool
+29/èþë/2017 14:46:45,428- ConnectionPool: The database driver has been found
+29/èþë/2017 14:46:46,787- ConnectionPool: The connections have been added to the connection pool
+29/èþë/2017 14:46:46,848- ConnectionPool: The connection pool has been destroyed
+29/èþë/2017 14:51:21,339- ConnectionPool: All necessary properties have been setted to the connection pool
+29/èþë/2017 14:51:21,398- ConnectionPool: The database driver has been found
+29/èþë/2017 14:51:22,777- ConnectionPool: The connections have been added to the connection pool
+29/èþë/2017 14:51:22,841- ConnectionPool: The connection pool has been destroyed
+29/èþë/2017 14:58:08,435- ConnectionPool: All necessary properties have been setted to the connection pool
+29/èþë/2017 14:58:08,485- ConnectionPool: The database driver has been found
+29/èþë/2017 14:58:09,523- ConnectionPool: The connections have been added to the connection pool
+29/èþë/2017 14:58:09,587- ConnectionPool: The connection pool has been destroyed
+29/èþë/2017 14:58:50,839- ConnectionPool: All necessary properties have been setted to the connection pool
+29/èþë/2017 14:58:50,871- ConnectionPool: The database driver has been found
+29/èþë/2017 14:58:51,967- ConnectionPool: The connections have been added to the connection pool
+29/èþë/2017 14:58:52,046- ConnectionPool: The connection pool has been destroyed
+29/èþë/2017 15:03:05,058- ConnectionPool: All necessary properties have been setted to the connection pool
+29/èþë/2017 15:03:05,098- ConnectionPool: The database driver has been found
+29/èþë/2017 15:03:05,978- ConnectionPool: The connections have been added to the connection pool
+29/èþë/2017 15:03:06,119- ConnectionPool: The connection pool has been destroyed
+29/èþë/2017 15:04:52,155- ConnectionPool: All necessary properties have been setted to the connection pool
+29/èþë/2017 15:04:52,198- ConnectionPool: The database driver has been found
+29/èþë/2017 15:04:53,053- ConnectionPool: The connections have been added to the connection pool
+29/èþë/2017 15:04:53,492- ConnectionPool: The connection pool has been destroyed
+29/èþë/2017 15:07:49,768- ConnectionPool: All necessary properties have been setted to the connection pool
+29/èþë/2017 15:07:49,814- ConnectionPool: The database driver has been found
+29/èþë/2017 15:07:50,671- ConnectionPool: The connections have been added to the connection pool
+29/èþë/2017 15:07:51,125- ConnectionPool: The connection pool has been destroyed
+29/èþë/2017 15:09:57,275- ConnectionPool: All necessary properties have been setted to the connection pool
+29/èþë/2017 15:09:57,315- ConnectionPool: The database driver has been found
+29/èþë/2017 15:09:58,047- ConnectionPool: The connections have been added to the connection pool
+29/èþë/2017 15:09:58,203- ConnectionPool: The connection has been taken from the connection pool
+29/èþë/2017 15:09:58,359- ConnectionPool: The connection has been returned to the connection pool
+29/èþë/2017 15:09:58,359- ConnectionPool: The connection has been taken from the connection pool
+29/èþë/2017 15:09:58,469- ConnectionPool: The connection has been returned to the connection pool
+29/èþë/2017 15:09:58,469- ConnectionPool: The connection has been taken from the connection pool
+29/èþë/2017 15:09:58,578- ConnectionPool: The connection has been returned to the connection pool
+29/èþë/2017 15:09:58,578- ConnectionPool: The connection has been taken from the connection pool
+29/èþë/2017 15:09:58,625- ConnectionPool: The connection has been returned to the connection pool
+29/èþë/2017 15:09:58,625- ConnectionPool: The connection has been taken from the connection pool
+29/èþë/2017 15:09:58,688- ConnectionPool: The connection has been returned to the connection pool
+29/èþë/2017 15:09:58,688- ConnectionPool: The connection has been taken from the connection pool
+29/èþë/2017 15:09:58,719- ConnectionPool: The connection has been returned to the connection pool
+29/èþë/2017 15:09:58,719- ConnectionPool: The connection has been taken from the connection pool
+29/èþë/2017 15:09:58,766- ConnectionPool: The connection has been returned to the connection pool
+29/èþë/2017 15:09:58,766- ConnectionPool: The connection has been taken from the connection pool
+29/èþë/2017 15:09:58,766- ConnectionPool: The connection has been returned to the connection pool
+29/èþë/2017 15:09:58,781- ConnectionPool: The connection has been taken from the connection pool
+29/èþë/2017 15:09:58,860- ConnectionPool: The connection has been returned to the connection pool
+29/èþë/2017 15:09:58,860- ConnectionPool: The connection has been taken from the connection pool
+29/èþë/2017 15:09:58,938- ConnectionPool: The connection has been returned to the connection pool
+29/èþë/2017 15:09:58,938- ConnectionPool: The connection has been taken from the connection pool
+29/èþë/2017 15:09:58,969- ConnectionPool: The connection has been returned to the connection pool
+29/èþë/2017 15:09:58,969- ConnectionPool: The connection has been taken from the connection pool
+29/èþë/2017 15:09:59,016- ConnectionPool: The connection has been returned to the connection pool
+29/èþë/2017 15:09:59,016- ConnectionPool: The connection has been taken from the connection pool
+29/èþë/2017 15:09:59,016- ConnectionPool: The connection has been returned to the connection pool
+29/èþë/2017 15:09:59,016- ConnectionPool: The connection has been taken from the connection pool
+29/èþë/2017 15:09:59,125- ConnectionPool: The connection has been returned to the connection pool
+29/èþë/2017 15:09:59,125- ConnectionPool: The connection has been taken from the connection pool
+29/èþë/2017 15:09:59,141- ConnectionPool: The connection has been returned to the connection pool
+29/èþë/2017 15:09:59,141- ConnectionPool: The connection has been taken from the connection pool
+29/èþë/2017 15:09:59,172- ConnectionPool: The connection has been returned to the connection pool
+29/èþë/2017 15:09:59,172- ConnectionPool: The connection has been taken from the connection pool
+29/èþë/2017 15:09:59,250- ConnectionPool: The connection has been returned to the connection pool
+29/èþë/2017 15:09:59,250- ConnectionPool: The connection has been taken from the connection pool
+29/èþë/2017 15:09:59,313- ConnectionPool: The connection has been returned to the connection pool
+29/èþë/2017 15:09:59,313- ConnectionPool: The connection has been taken from the connection pool
+29/èþë/2017 15:09:59,360- ConnectionPool: The connection has been returned to the connection pool
+29/èþë/2017 15:09:59,360- ConnectionPool: The connection has been taken from the connection pool
+29/èþë/2017 15:09:59,360- ConnectionPool: The connection has been returned to the connection pool
+29/èþë/2017 15:09:59,360- ConnectionPool: The connection has been taken from the connection pool
+29/èþë/2017 15:09:59,406- ConnectionPool: The connection has been returned to the connection pool
+29/èþë/2017 15:09:59,411- ConnectionPool: The connection has been taken from the connection pool
+29/èþë/2017 15:09:59,474- ConnectionPool: The connection has been returned to the connection pool
+29/èþë/2017 15:09:59,474- ConnectionPool: The connection has been taken from the connection pool
+29/èþë/2017 15:09:59,568- ConnectionPool: The connection has been returned to the connection pool
+29/èþë/2017 15:09:59,568- ConnectionPool: The connection has been taken from the connection pool
+29/èþë/2017 15:09:59,568- ConnectionPool: The connection has been returned to the connection pool
+29/èþë/2017 15:09:59,568- ConnectionPool: The connection has been taken from the connection pool
+29/èþë/2017 15:09:59,615- ConnectionPool: The connection has been returned to the connection pool
+29/èþë/2017 15:09:59,630- ConnectionPool: The connection has been taken from the connection pool
+29/èþë/2017 15:09:59,630- ConnectionPool: The connection has been returned to the connection pool
+29/èþë/2017 15:09:59,630- ConnectionPool: The connection pool has been destroyed
+29/èþë/2017 15:10:32,645- ConnectionPool: All necessary properties have been setted to the connection pool
+29/èþë/2017 15:10:32,698- ConnectionPool: The database driver has been found
+29/èþë/2017 15:10:33,526- ConnectionPool: The connections have been added to the connection pool
+29/èþë/2017 15:10:33,542- ConnectionPool: The connection has been taken from the connection pool
+29/èþë/2017 15:10:33,573- ConnectionPool: The connection has been returned to the connection pool
+29/èþë/2017 15:10:33,573- ConnectionPool: The connection has been taken from the connection pool
+29/èþë/2017 15:10:33,807- ConnectionPool: The connection has been returned to the connection pool
+29/èþë/2017 15:10:33,816- ConnectionPool: The connection has been taken from the connection pool
+29/èþë/2017 15:10:33,817- ConnectionPool: The connection has been returned to the connection pool
+29/èþë/2017 15:10:33,817- ConnectionPool: The connection has been taken from the connection pool
+29/èþë/2017 15:10:33,880- ConnectionPool: The connection has been returned to the connection pool
+29/èþë/2017 15:10:33,880- ConnectionPool: The connection has been taken from the connection pool
+29/èþë/2017 15:10:33,942- ConnectionPool: The connection has been returned to the connection pool
+29/èþë/2017 15:10:33,942- ConnectionPool: The connection has been taken from the connection pool
+29/èþë/2017 15:10:34,099- ConnectionPool: The connection has been returned to the connection pool
+29/èþë/2017 15:10:34,099- ConnectionPool: The connection has been taken from the connection pool
+29/èþë/2017 15:10:34,161- ConnectionPool: The connection has been returned to the connection pool
+29/èþë/2017 15:10:34,161- ConnectionPool: The connection has been taken from the connection pool
+29/èþë/2017 15:10:34,239- ConnectionPool: The connection has been returned to the connection pool
+29/èþë/2017 15:10:34,239- ConnectionPool: The connection has been taken from the connection pool
+29/èþë/2017 15:10:34,380- ConnectionPool: The connection has been returned to the connection pool
+29/èþë/2017 15:10:34,380- ConnectionPool: The connection has been taken from the connection pool
+29/èþë/2017 15:10:34,427- ConnectionPool: The connection has been returned to the connection pool
+29/èþë/2017 15:10:34,427- ConnectionPool: The connection has been taken from the connection pool
+29/èþë/2017 15:10:34,489- ConnectionPool: The connection has been returned to the connection pool
+29/èþë/2017 15:10:34,489- ConnectionPool: The connection has been taken from the connection pool
+29/èþë/2017 15:10:34,505- ConnectionPool: The connection has been returned to the connection pool
+29/èþë/2017 15:10:34,505- ConnectionPool: The connection has been taken from the connection pool
+29/èþë/2017 15:10:34,552- ConnectionPool: The connection has been returned to the connection pool
+29/èþë/2017 15:10:34,552- ConnectionPool: The connection has been taken from the connection pool
+29/èþë/2017 15:10:34,599- ConnectionPool: The connection has been returned to the connection pool
+29/èþë/2017 15:10:34,599- ConnectionPool: The connection has been taken from the connection pool
+29/èþë/2017 15:10:34,599- ConnectionPool: The connection has been returned to the connection pool
+29/èþë/2017 15:10:34,599- ConnectionPool: The connection has been taken from the connection pool
+29/èþë/2017 15:10:34,645- ConnectionPool: The connection has been returned to the connection pool
+29/èþë/2017 15:10:34,645- ConnectionPool: The connection has been taken from the connection pool
+29/èþë/2017 15:10:34,645- ConnectionPool: The connection has been returned to the connection pool
+29/èþë/2017 15:10:34,645- ConnectionPool: The connection has been taken from the connection pool
+29/èþë/2017 15:10:34,673- ConnectionPool: The connection has been returned to the connection pool
+29/èþë/2017 15:10:34,673- ConnectionPool: The connection has been taken from the connection pool
+29/èþë/2017 15:10:34,720- ConnectionPool: The connection has been returned to the connection pool
+29/èþë/2017 15:10:34,720- ConnectionPool: The connection pool has been destroyed
+29/èþë/2017 15:11:23,918- ConnectionPool: All necessary properties have been setted to the connection pool
+29/èþë/2017 15:11:23,967- ConnectionPool: The database driver has been found
+29/èþë/2017 15:11:24,823- ConnectionPool: The connections have been added to the connection pool
+29/èþë/2017 15:11:25,208- ConnectionPool: The connection pool has been destroyed
