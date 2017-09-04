@@ -27,7 +27,7 @@ public class RequestServiceImpl implements IRequestService {
 	/**
 	 * Number of requests per page
 	 */
-	private static final int NUMBER_OF_REQUESTS_ON_PAGE = 2;
+	private static final int NUMBER_OF_REQUESTS_ON_PAGE = 6;
 
 	/**
 	 * This method is used to get user request by user ID and validate input
@@ -290,7 +290,7 @@ public class RequestServiceImpl implements IRequestService {
 			IRequestDAO requestDAO = factory.getRequestDAO();
 			requestList = requestDAO.getRequestPart(start, NUMBER_OF_REQUESTS_ON_PAGE);
 			if (requestList.isEmpty()) {
-				throw new GetRequestServiceException(ExceptionMessages.NO_CURRENT_REQUEST_IN_DB);
+				throw new GetRequestServiceException(ExceptionMessages.NO_REQUESRS_IN_DB);
 			}
 		} catch (DAOException e) {
 			throw new ServiceException(ExceptionMessages.SOURCE_ERROR, e);

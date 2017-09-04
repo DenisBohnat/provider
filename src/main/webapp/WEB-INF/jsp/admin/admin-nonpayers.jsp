@@ -17,6 +17,7 @@
 <fmt:message bundle="${loc}" key="local.edit.editBan"
 	var="editBan" />
 <fmt:message bundle="${loc}" key="local.title.nonPayers" var="nonPayers" />
+<fmt:message bundle="${loc}" key="local.pageMessages.showNonpayers" var="showNonpayers" />
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -36,6 +37,7 @@
 		<div class="row content ">
 			<jsp:include page="/WEB-INF/jsp/static/left-sidebar.jsp"></jsp:include>
 			<div class="col-md-10 col-sm-9 main content">
+<h4 align="center">${showNonpayers}</h4>
 
 <table class="table table-bordered table-responsive table-condensed">
 					<thead>

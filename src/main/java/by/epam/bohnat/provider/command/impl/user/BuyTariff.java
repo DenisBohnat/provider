@@ -3,6 +3,7 @@ package by.epam.bohnat.provider.command.impl.user;
 import java.io.IOException;
 import java.sql.Date;
 import java.time.LocalDate;
+import java.util.Random;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -80,7 +81,7 @@ public class BuyTariff implements Command {
 		} else {
 			int userId = Integer.valueOf(session.getAttribute(Attributes.USER_ID).toString());
 			int tariffId = Integer.parseInt(request.getParameter(Attributes.TYPE_ID));
-			Long accNumber = Long.parseLong(request.getParameter(Attributes.ACCOUNT_NUMBER));
+			Long accNumber = generateAccNumber();
 
 			Date paymentDate = Date.valueOf(LocalDate.now());
 
@@ -92,6 +93,7 @@ public class BuyTariff implements Command {
 				IAccountService aService = f.getAccountService();
 				aService.addAccount(account);
 				logger.debug(String.format(LogMessages.TARIFF_BOUGHT, userId));
+				session.setAttribute(Attributes.HAVE_ACCOUNT, true);
 				request.setAttribute(Attributes.SUCCESS_MESSAGE, SuccessMessages.TARIFF_BOUGHT);
 				request.getRequestDispatcher(JSPNames.START_PAGE).forward(request, response);
 			} catch (AddAccountServiceException e) {
@@ -107,4 +109,20 @@ public class BuyTariff implements Command {
 			}
 		}
 	}
+
+	/**
+	 * Generate account number
+	 * 
+	 * @return account number
+	 */
+	private long generateAccNumber() {
+		StringBuilder accNumber = new StringBuilder();
+		Random rand = new Random();
+		for (int i = 0; i < 6; i++) {
+			int randomNumber = rand.nextInt(8) + 1;
+			accNumber.append(randomNumber);
+		}
+		return Long.parseLong(accNumber.toString());
+	}
+
 }

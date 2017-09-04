@@ -35,6 +35,11 @@ public class EditTariff implements Command {
 	private static final Logger logger = LogManager.getLogger(EditTariff.class.getName());
 
 	/**
+	 * Identifier that indicates that the user is not an administrator
+	 */
+	private static final int NOT_ADMIN = 1;
+	
+	/**
 	 * Performs the command that reads updated tariff parameters from the JSP
 	 * and sends them to the relevant service class.
 	 * <p>
@@ -61,9 +66,8 @@ public class EditTariff implements Command {
 			request.setAttribute(Attributes.ERROR_MESSAGE, ErrorMessages.EDIT_TARIFF_POSSIBILITY);
 			request.getRequestDispatcher(JSPNames.INDEX_PAGE).forward(request, response);
 		} else {
-			if (Integer.valueOf(session.getAttribute(Attributes.ROLE).toString()) == 1) {
+			if (Integer.valueOf(session.getAttribute(Attributes.ROLE).toString()) == NOT_ADMIN) {
 				request.setAttribute(Attributes.ERROR_MESSAGE, ErrorMessages.EDIT_TARIFF_POSSIBILITY);
-				// ???
 				request.getRequestDispatcher(JSPNames.INDEX_PAGE).forward(request, response);
 			} else {
 				int tariffId = Integer.parseInt(request.getParameter(Attributes.TARIFF_ID));
@@ -89,7 +93,7 @@ public class EditTariff implements Command {
 					logger.error(String.format(LogMessages.EXCEPTION_IN_COMMAND, e.getClass().getSimpleName(),
 							this.getClass().getSimpleName()), e);
 					request.setAttribute(Attributes.ERROR_MESSAGE, e.getMessage());
-					request.getRequestDispatcher(JSPNames.ADMIN_EDITING_TARIFF_PAGE).forward(request, response);
+					request.getRequestDispatcher("/Controller?command=editing_tariff&tariffId="+tariffId).forward(request, response);
 				} catch (ServiceException e) {
 					logger.error(String.format(LogMessages.EXCEPTION_IN_COMMAND, e.getClass().getSimpleName(),
 							this.getClass().getSimpleName()), e);

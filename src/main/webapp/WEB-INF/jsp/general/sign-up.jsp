@@ -32,7 +32,7 @@
 <fmt:message bundle="${loc}" key="local.adduser.enterButton"
 	var="enterButton" />
 <fmt:message bundle="${loc}" key="local.title.signUp" var="signUp" />
-
+<fmt:message bundle="${loc}" key="local.pageMessages.showSignup" var="showSignup" />
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -58,7 +58,7 @@
 		 ${errorMessage} 
 	</div>
 </c:if>
-
+<h4 align="center">${showSignup}</h4>
 				<form name="signUpForm" class="form-horizontal" method="post"
 					action="Controller" onSubmit="return validateForm(event);">
 

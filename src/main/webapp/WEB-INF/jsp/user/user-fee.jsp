@@ -20,6 +20,7 @@
 <fmt:message bundle="${loc}" key="local.edit.editFund" var="editFund" />
 <fmt:message bundle="${loc}" key="local.account.wholeAmount" var="wAmount" />
 <fmt:message bundle="${loc}" key="local.title.fee" var="subFee" />
+<fmt:message bundle="${loc}" key="local.pageMessages.showFee" var="showFee" />
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -39,7 +40,7 @@
 		<div class="row content ">
 			<jsp:include page="/WEB-INF/jsp/static/left-sidebar.jsp"></jsp:include>
 			<div class="col-md-10 col-sm-9 main content">
-
+<h4 align="center">${showFee}</h4>
 				<form name="feeForm" class="form-horizontal" method="post"
 					action="Controller">
 

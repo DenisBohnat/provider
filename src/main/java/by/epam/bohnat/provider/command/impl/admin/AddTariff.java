@@ -35,6 +35,11 @@ public class AddTariff implements Command {
 	private static final Logger logger = LogManager.getLogger(AddTariff.class.getName());
 
 	/**
+	 * Identifier that indicates that the user is not an administrator
+	 */
+	private static final int NOT_ADMIN = 1;
+
+	/**
 	 * Performs the command that reads new tariff parameters from the JSP and
 	 * sends them to the relevant service class.
 	 * <p>
@@ -61,9 +66,8 @@ public class AddTariff implements Command {
 			request.setAttribute(Attributes.ERROR_MESSAGE, ErrorMessages.ADD_TARIFF_POSSIBILITY);
 			request.getRequestDispatcher(JSPNames.INDEX_PAGE).forward(request, response);
 		} else {
-			if (Integer.valueOf(session.getAttribute(Attributes.ROLE).toString()) == 1) {
+			if (Integer.valueOf(session.getAttribute(Attributes.ROLE).toString()) == NOT_ADMIN) {
 				request.setAttribute(Attributes.ERROR_MESSAGE, ErrorMessages.ADD_TARIFF_POSSIBILITY);
-				// ???
 				request.getRequestDispatcher(JSPNames.INDEX_PAGE).forward(request, response);
 			} else {
 				int typeId = Integer.parseInt(request.getParameter(Attributes.TYPE_ID));

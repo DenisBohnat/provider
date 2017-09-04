@@ -23,6 +23,11 @@ import by.epam.bohnat.provider.command.util.JSPNames;
 public class OpenAddingUserPage implements Command {
 
 	/**
+	 * Identifier that indicates that the user is not an administrator
+	 */
+	private static final int NOT_ADMIN = 1;
+	
+	/**
 	 * The method describes the behavior of the command to process the request
 	 * to redirect to the page, where the administrator can add a new user.
 	 * <p>
@@ -43,7 +48,7 @@ public class OpenAddingUserPage implements Command {
 			request.setAttribute(Attributes.ERROR_MESSAGE, ErrorMessages.ADD_USER_POSSIBILITY);
 			request.getRequestDispatcher(JSPNames.INDEX_PAGE).forward(request, response);
 		} else {
-			if (Integer.valueOf(session.getAttribute(Attributes.ROLE).toString()) == 1) {
+			if (Integer.valueOf(session.getAttribute(Attributes.ROLE).toString()) == NOT_ADMIN) {
 				request.setAttribute(Attributes.ERROR_MESSAGE, ErrorMessages.ADD_USER_POSSIBILITY);
 				request.getRequestDispatcher(JSPNames.INDEX_PAGE).forward(request, response);
 			} else {

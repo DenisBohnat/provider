@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib uri="/WEB-INF/tld/providertaglib.tld" prefix="prov"%>
 
 <c:set var="language"
 	value="${not empty sessionScope.language ? sessionScope.language : 'en' }"
@@ -16,6 +17,7 @@
 <fmt:message bundle="${loc}" key="local.tariff.action" var="action" />
 <fmt:message bundle="${loc}" key="local.tariff.edit" var="edit" />
 <fmt:message bundle="${loc}" key="local.tariff.delete" var="delete" />
+<fmt:message bundle="${loc}" key="local.pageMessages.showUsers" var="showUsers" />
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -36,7 +38,7 @@
 		<div class="row content ">
 			<jsp:include page="/WEB-INF/jsp/static/left-sidebar.jsp"></jsp:include>
 			<div class="col-md-10 col-sm-9 main content">
-
+<h4 align="center">${showUsers}</h4>
 				<table class="table table-bordered table-responsive table-condensed">
 					<thead>
 						<tr>
@@ -69,11 +71,11 @@
 									<c:choose>
 										<c:when test="${pageNumber eq requestScope.curPage}">
 											<li class="active"><a
-												href="<c:url value="/Controller?command=show_customers&pageNumber=${pageNumber}" />">${pageNumber}</a></li>
+												href="<c:url value="/Controller?command=show_customers&pageNumber=${pageNumber}&elementsPerPage=${requestScope.elementsPerPage}" />">${pageNumber}</a></li>
 										</c:when>
 										<c:otherwise>
 											<li><a
-												href="<c:url value="/Controller?command=show_customers&pageNumber=${pageNumber}" />">${pageNumber}</a></li>
+												href="<c:url value="/Controller?command=show_customers&pageNumber=${pageNumber}&elementsPerPage=${requestScope.elementsPerPage}" />">${pageNumber}</a></li>
 										</c:otherwise>
 									</c:choose>
 								</c:forEach>
@@ -90,11 +92,11 @@
 									<c:choose>
 										<c:when test="${pageNumber eq requestScope.curPage}">
 											<li class="active"><a
-												href="<c:url value="/Controller?command=show_admins&pageNumber=${pageNumber}" />">${pageNumber}</a></li>
+												href="<c:url value="/Controller?command=show_admins&pageNumber=${pageNumber}&elementsPerPage=${requestScope.elementsPerPage}" />">${pageNumber}</a></li>
 										</c:when>
 										<c:otherwise>
 											<li><a
-												href="<c:url value="/Controller?command=show_admins&pageNumber=${pageNumber}" />">${pageNumber}</a></li>
+												href="<c:url value="/Controller?command=show_admins&pageNumber=${pageNumber}&elementsPerPage=${requestScope.elementsPerPage}" />">${pageNumber}</a></li>
 										</c:otherwise>
 									</c:choose>
 								</c:forEach>
@@ -105,7 +107,28 @@
 					</c:otherwise>
 
 				</c:choose>
+				
+<c:choose>
+<c:when test="${!requestScope.isAdmin}">	
 
+<form action="Controller" name="addVariants" method="post">
+<input type="hidden" name="command" value="show_customers" />
+<input type="hidden" name="pageNumber" value="1" />
+<prov:formatSelect variants="4,6,8,10"/>
+</form>
+			
+</c:when>
+<c:otherwise>
+
+<form action="Controller" name="addVariants" method="post">
+<input type="hidden" name="command" value="show_admins" />
+<input type="hidden" name="pageNumber" value="1" />
+<prov:formatSelect variants="4,6,8,10"/>
+</form>
+
+</c:otherwise>
+</c:choose>				
+				
 			</div>
 		</div>
 	</div>

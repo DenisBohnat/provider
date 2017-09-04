@@ -74,8 +74,12 @@ public class OpenUserFeePage implements Command {
 				Tariff aTariff = tService.getTariffById(account.getTariffId());
 				float spentTraficAmount = account.getSpentTraffic() * aTariff.getOverdraftAmount();
 				float wholeAmount = spentTraficAmount + aTariff.getSubscriptionFee() - account.getAmount();
+				if (wholeAmount > 0) {
+					request.setAttribute(Attributes.WHOLE_AMOUNT, wholeAmount);
+				} else {
+					request.setAttribute(Attributes.WHOLE_AMOUNT, 0);
+				}
 				request.setAttribute(Attributes.SPENT_TRAFIC_AMOUNT, spentTraficAmount);
-				request.setAttribute(Attributes.WHOLE_AMOUNT, wholeAmount);
 				request.setAttribute(Attributes.CURRENT_ACCOUNT, account);
 				request.setAttribute(Attributes.TARIFF_ACCOUNT, aTariff);
 				request.getRequestDispatcher(JSPNames.USER_FEE_PAGE).forward(request, response);

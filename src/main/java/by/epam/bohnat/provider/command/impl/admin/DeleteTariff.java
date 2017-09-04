@@ -33,6 +33,11 @@ public class DeleteTariff implements Command {
 	private static final Logger logger = LogManager.getLogger(DeleteTariff.class.getName());
 
 	/**
+	 * Identifier that indicates that the user is not an administrator
+	 */
+	private static final int NOT_ADMIN = 1;
+	
+	/**
 	 * Performs the command that reads tariff ID parameter from the JSP and
 	 * sends them to the relevant service class for deleting from the data
 	 * source.
@@ -59,9 +64,8 @@ public class DeleteTariff implements Command {
 			request.setAttribute(Attributes.ERROR_MESSAGE, ErrorMessages.DELETE_TARIFF_POSSIBILITY);
 			request.getRequestDispatcher(JSPNames.INDEX_PAGE).forward(request, response);
 		} else {
-			if (Integer.valueOf(session.getAttribute(Attributes.ROLE).toString()) == 1) {
+			if (Integer.valueOf(session.getAttribute(Attributes.ROLE).toString()) == NOT_ADMIN) {
 				request.setAttribute(Attributes.ERROR_MESSAGE, ErrorMessages.DELETE_TARIFF_POSSIBILITY);
-				// ???
 				request.getRequestDispatcher(JSPNames.INDEX_PAGE).forward(request, response);
 			} else {
 
@@ -72,7 +76,6 @@ public class DeleteTariff implements Command {
 					ITariffService tService = f.getTariffService();
 					tService.deleteTariff(tariffId);
 					logger.debug(String.format(LogMessages.TARIFF_DELETED, tariffId));
-					// success message
 					request.setAttribute(Attributes.SUCCESS_MESSAGE, SuccessMessages.TARIFF_DELETED);
 					request.getRequestDispatcher("/Controller?command=show_tariffs").forward(request, response);
 				} catch (ServiceException e) {

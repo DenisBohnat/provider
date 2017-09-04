@@ -1,6 +1,7 @@
 package by.epam.bohnat.provider.dao;
 
 import by.epam.bohnat.provider.dao.impl.AccountDAOImpl;
+import by.epam.bohnat.provider.dao.impl.PaymentDAOImpl;
 import by.epam.bohnat.provider.dao.impl.RequestDAOImpl;
 import by.epam.bohnat.provider.dao.impl.TariffDAOImpl;
 import by.epam.bohnat.provider.dao.impl.UserDaoImpl;
@@ -52,6 +53,11 @@ public class DAOFactory {
 	 * DAO object for extracting data about requests from data source
 	 */
 	private final static IRequestDAO requestDAO = new RequestDAOImpl();
+
+	/**
+	 * DAO object for extracting data about payments from data source
+	 */
+	private final static IPaymentDao paymentDAO = new PaymentDAOImpl();
 
 	/**
 	 * A constructor for creating a factory object. It can only be called from
@@ -112,5 +118,16 @@ public class DAOFactory {
 	 */
 	public IRequestDAO getRequestDAO() {
 		return requestDAO;
+	}
+
+	/**
+	 * Getting a DAO object that can extract data about payments from a data
+	 * source
+	 * 
+	 * @return DAO object for extracting data about payments
+	 * @see IPaymentDao
+	 */
+	public IPaymentDao getPaymentDAO() {
+		return paymentDAO;
 	}
 }

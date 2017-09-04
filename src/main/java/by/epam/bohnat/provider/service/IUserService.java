@@ -131,10 +131,12 @@ public interface IUserService {
 	 * Counts the number of pages needed to locate all users within the
 	 * pagination
 	 * 
+	 * @param elementsPerPage
+	 *            option
 	 * @return number of pages
 	 * @throws ServiceException
 	 */
-	int getNumberOfUserPages() throws ServiceException;
+	int getNumberOfUserPages(int elementsPerPage) throws ServiceException;
 
 	/**
 	 * Receives a particular list of all users from the DAO layer depending on
@@ -143,19 +145,23 @@ public interface IUserService {
 	 * 
 	 * @param pageNumber
 	 *            number of current page
+	 * @param elementsPerPage
+	 *            option
 	 * @return list of users
 	 * @throws ServiceException
 	 */
-	List<User> getUsersOnCurrentPage(int pageNumber) throws ServiceException;
+	List<User> getUsersOnCurrentPage(int pageNumber, int elementsPerPage) throws ServiceException;
 
 	/**
 	 * Counts the number of pages needed to locate all administrators within the
 	 * pagination
 	 * 
+	 * @param elementsPerPage
+	 *            option
 	 * @return number of pages
 	 * @throws ServiceException
 	 */
-	int getNumberOfAdminsPages() throws ServiceException;
+	int getNumberOfAdminsPages(int elementsPerPage) throws ServiceException;
 
 	/**
 	 * Receives a particular list of all administrators from the DAO layer
@@ -164,8 +170,10 @@ public interface IUserService {
 	 * 
 	 * @param pageNumber
 	 *            number of current page
+	 * @param elementsPerPage
+	 *            option
 	 * @return list of administrators
 	 * @throws ServiceException
 	 */
-	List<User> getAdminsOnCurrentPage(int pageNumber) throws ServiceException;
+	List<User> getAdminsOnCurrentPage(int pageNumber, int elementsPerPage) throws ServiceException;
 }

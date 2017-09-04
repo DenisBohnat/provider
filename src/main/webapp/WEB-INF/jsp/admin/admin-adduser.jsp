@@ -66,7 +66,7 @@
 	</div>
 </c:if> 
 
-  <h3 align="center">${addingUser}</h3> 
+  <h4 align="center">${addingUser}</h4> 
 				<form name="addUserForm" class="form-horizontal" method="post"
 					action="Controller" onSubmit="return validateForm(event);">
 

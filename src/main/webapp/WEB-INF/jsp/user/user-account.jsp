@@ -19,7 +19,11 @@
 	var="spentTraffic" />
 <fmt:message bundle="${loc}" key="local.tariff.name" var="nameT" />
 <fmt:message bundle="${loc}" key="local.edit.editBuy" var="editBuy" />
+<fmt:message bundle="${loc}" key="local.edit.editTerminate"
+	var="editTerminate" />
 <fmt:message bundle="${loc}" key="local.title.account" var="account" />
+<fmt:message bundle="${loc}" key="local.pageMessages.showAccount"
+	var="showAccount" />
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -39,7 +43,7 @@
 		<div class="row content ">
 			<jsp:include page="/WEB-INF/jsp/static/left-sidebar.jsp"></jsp:include>
 			<div class="col-md-10 col-sm-9 main content">
-
+				<h4 align="center">${showAccount}</h4>
 				<c:choose>
 					<c:when test="${requestScope.haveAccount}">
 						<c:set var="account" value="${requestScope.curAccount}" />
@@ -47,6 +51,11 @@
 
 						<form name="accountForm" class="form-horizontal" method="post"
 							action="Controller">
+
+							<div class="form-group">
+								<input type="hidden" name="command" value="terminate_account" />
+								<input type="hidden" name="accId" value="${account.getId()}" />
+							</div>
 
 							<div class="form-group">
 								<label class="control-label col-md-3 col-sm-3">${nameT}</label>
@@ -88,6 +97,15 @@
 								</div>
 							</div>
 
+							<div class="form-group">
+								<div class="col-md-4 col-sm-4 col-md-offset-3 col-sm-offset-3">
+									<button type="submit" class="btn btn-primary">${editTerminate}</button>
+									<a href="<c:url value="/Controller?command=cancel" />"
+										class="btn btn-primary" role="button">${editCancel}</a> <span
+										class="divider-vertical"> </span>
+								</div>
+							</div>
+
 						</form>
 
 					</c:when>
@@ -95,6 +113,9 @@
 						<form name="buyAccountForm" class="form-horizontal" method="post"
 							action="Controller">
 
+							<div class="form-group">
+								<input type="hidden" name="command" value="buy_tariff" />
+							</div>
 							<div class="form-group">
 								<label class="control-label col-md-3 col-sm-3">${nameT}</label>
 								<div class="col-md-9 col-sm-9 selectContainer">
@@ -104,13 +125,6 @@
 												${tariffs.getId() == selectedTariff ? 'selected="selected"' : ''}>${tariffs.getName()}</option>
 										</c:forEach>
 									</select>
-								</div>
-							</div>
-
-							<div class="form-group">
-								<label class="control-label col-md-3 col-sm-3">Number</label>
-								<div class="col-md-9 col-sm-9">
-									<input type="text" class="form-control" name="accNumber">
 								</div>
 							</div>
 

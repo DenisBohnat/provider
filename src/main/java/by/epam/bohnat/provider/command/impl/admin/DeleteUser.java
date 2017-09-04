@@ -33,6 +33,11 @@ public class DeleteUser implements Command {
 	private static final Logger logger = LogManager.getLogger(DeleteUser.class.getName());
 
 	/**
+	 * Identifier that indicates that the user is not an administrator
+	 */
+	private static final int NOT_ADMIN = 1;
+	
+	/**
 	 * Performs the command that reads user ID parameter from the JSP and sends
 	 * them to the relevant service class for deleting from the data source.
 	 * <p>
@@ -58,7 +63,7 @@ public class DeleteUser implements Command {
 			request.setAttribute(Attributes.ERROR_MESSAGE, ErrorMessages.DELETE_USER_POSSIBILITY);
 			request.getRequestDispatcher(JSPNames.INDEX_PAGE).forward(request, response);
 		} else {
-			if (Integer.valueOf(session.getAttribute(Attributes.ROLE).toString()) == 1) {
+			if (Integer.valueOf(session.getAttribute(Attributes.ROLE).toString()) == NOT_ADMIN) {
 				request.setAttribute(Attributes.ERROR_MESSAGE, ErrorMessages.DELETE_USER_POSSIBILITY);
 				request.getRequestDispatcher(JSPNames.INDEX_PAGE).forward(request, response);
 			} else {

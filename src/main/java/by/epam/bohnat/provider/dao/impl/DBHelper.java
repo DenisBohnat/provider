@@ -31,14 +31,19 @@ class DBHelper {
 	static final String SQL_SELECT_REQUEST_BY_ID = "SELECT user_request.ur_user_id,user_request.ur_tariff_id,user_request.ur_description,user_request.ur_req_date FROM user_request WHERE user_request.ur_id=?";
 	static final String SQL_SELECT_COUNT_REQUESTS = "SELECT COUNT(*) FROM user_request";
 	static final String SQL_SELECT_REQUESTS_LIST_PART = "SELECT * FROM user_request ORDER BY user_request.ur_req_date DESC LIMIT ?, ?";
+	static final String SQL_SELECT_COUNT_PAYMENTS = "SELECT COUNT(*) FROM payment WHERE payment.p_account_a_id=?";
+	static final String SQL_SELECT_PAYMENTS_LIST_PART = "SELECT * FROM payment WHERE payment.p_account_a_id=? ORDER BY payment.p_payment_date DESC LIMIT ?, ?";
 	static final String SQL_INSERT_TARIFF = "INSERT INTO tariff(t_tariff_type_id, t_name, t_rec_speed,t_trans_speed,t_subscription_fee,t_traffic_volume,t_overdraft_amount ) VALUES(?,?,?,?,?,?,?)";
 	static final String SQL_INSERT_USER = "INSERT INTO user(user.u_name,user.u_surname,user.u_login,user.u_password,user.u_email,user.u_birth_date,user.u_reg_time,user.u_phone,user.u_role_id) VALUES(?,?,?,?,?,?,?,?,?)";
 	static final String SQL_INSERT_REQUEST = "INSERT INTO user_request(user_request.ur_user_id,user_request.ur_tariff_id,user_request.ur_description,user_request.ur_req_date) VALUES(?,?,?,?)";
 	static final String SQL_INSERT_ACCOUNT = "INSERT INTO account(account.a_user_id,account.a_tariff_id,account.a_block_id,account.a_account_number,account.a_amount,account.a_payment_date,account.a_spent_traffic) VALUES(?,?,?,?,?,?,?)";
+	static final String SQL_INSERT_PAYMENT = "INSERT INTO payment(payment.p_id,payment.p_account_a_id,payment.p_payment_date,payment.p_payment_amount) VALUES(?,?,?,?)";
 	static final String SQL_UPDATE_USER_BY_ID = "UPDATE user SET user.u_name=?,user.u_surname=?,user.u_login=?,user.u_password=?,user.u_email=?,user.u_birth_date=?,user.u_reg_time=?,user.u_phone=?,user.u_role_id=? WHERE user.u_id=?";
 	static final String SQL_UPDATE_TARIFF = "UPDATE tariff SET tariff.t_tariff_type_id=?, tariff.t_name=?, tariff.t_rec_speed=?, tariff.t_trans_speed=?, tariff.t_subscription_fee=?, tariff.t_traffic_volume=?, tariff.t_overdraft_amount=? WHERE tariff.t_id=?";
 	static final String SQL_UPDATE_ACCOUNT = "UPDATE account SET account.a_user_id=?, account.a_tariff_id=?, account.a_block_id=?, account.a_account_number=?, account.a_amount=?, account.a_payment_date=?, account.a_spent_traffic=? WHERE account.a_id=?";
 	static final String SQL_DELETE_TARIFF_BY_ID = "DELETE FROM tariff WHERE t_id=?";
 	static final String SQL_DELETE_USER_BY_ID = "DELETE FROM user WHERE user.u_id=?";
 	static final String SQL_DELETE_REQUEST_BY_ID = "DELETE FROM user_request WHERE user_request.ur_id=?";
+	static final String SQL_DELETE_ACCOUNT_BY_ID = "DELETE FROM account WHERE account.a_id=?";
+	static final String SQL_DELETE_PAYMENT_BY_ACCOUNT_ID = "DELETE FROM payment WHERE payment.p_account_a_id=?";
 }

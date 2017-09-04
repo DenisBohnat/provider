@@ -21,6 +21,7 @@
 <fmt:message bundle="${loc}" key="local.edit.editCancel"
 	var="editCancel" />
 <fmt:message bundle="${loc}" key="local.title.profile" var="profile" />
+<fmt:message bundle="${loc}" key="local.pageMessages.egitingProfile" var="egitingProfile" />
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -42,6 +43,7 @@
 			<div class="col-md-10 col-sm-9 main content">
 				<c:set var="user" value="${requestScope.curUser}" />
 
+<h4 align="center">${egitingProfile}</h4>
 				<form name="profileForm" class="form-horizontal" method="post"
 					action="Controller" onSubmit="return validateForm(event);">
 
@@ -79,15 +81,7 @@
 						<label class="control-label col-md-3 col-sm-3">${password}</label>
 						<div class="col-md-9 col-sm-9">
 							<input type="password" class="form-control" name="passwordUser"
-								value="${user.getPassword()}" id="pwdNew">
-						</div>
-					</div>
-
-					<div class="form-group">
-						<label class="control-label col-md-3 col-sm-3">${password}</label>
-						<div class="col-md-9 col-sm-9">
-							<input type="password" class="form-control" name="passwordUserRep"
-								value="${user.getPassword()}" id="pwdRep">
+								value="" id="pwdNew">
 						</div>
 					</div>
 
@@ -164,18 +158,6 @@ function validateForm(event)
 		document.profileForm.passwordUser.focus();
 		return false;
 		}
-	else if(document.profileForm.passwordUserRep.value=="") {
-		alert("Password can not be empty");
-		document.profileForm.passwordUserRep.focus();
-		return false;
-		}
-	else if (document.profileForm.passwordUser.value != document.profileForm.passwordUserRep.value) {
-	  	  alert("Passwords do not match! Try again.");
-	  	  document.getElementById("pwdNew").value="";
-	  	  document.getElementById("pwdRep").value="";
-	  	  document.profileForm.passwordUser.focus();
-	  	  return false;
-	    }
 	else if(document.profileForm.emailUser.value=="") {
 		alert("E-mail can not be empty");
 		document.profileForm.emailUser.focus();

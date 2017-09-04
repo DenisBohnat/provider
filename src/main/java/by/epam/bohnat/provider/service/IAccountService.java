@@ -3,6 +3,7 @@ package by.epam.bohnat.provider.service;
 import java.util.List;
 
 import by.epam.bohnat.provider.bean.Account;
+import by.epam.bohnat.provider.bean.Payment;
 import by.epam.bohnat.provider.service.exception.ServiceException;
 
 /**
@@ -36,7 +37,7 @@ public interface IAccountService {
 	 * 
 	 * @param userId
 	 *            user id
-	 * @return boolean variable that indicates that the user has a request
+	 * @return boolean variable that indicates that the user has an account
 	 * @throws ServiceException
 	 */
 	boolean isUserGetAccount(int userId) throws ServiceException;
@@ -105,4 +106,59 @@ public interface IAccountService {
 	 * @throws ServiceException
 	 */
 	List<Account> getNonPayersOnCurrentPage(int pageNumber) throws ServiceException;
+
+	/**
+	 * Verifies the input parameter and passes it to the DAO layer, receives the
+	 * request entity, returns boolean variable
+	 * 
+	 * @param userId
+	 *            user id
+	 * @return boolean variable that indicates that the user account was blocked
+	 * @throws ServiceException
+	 */
+	boolean isUserBlockedAccount(int userId) throws ServiceException;
+
+	/**
+	 * Verifies parameters and either passes to the DAO layer or throws an
+	 * exception
+	 * 
+	 * @param id
+	 *            account id
+	 * @throws ServiceException
+	 */
+	void deleteAccountById(int id) throws ServiceException;
+
+	/**
+	 * Verifies parameters and either passes to the DAO layer or throws an
+	 * exception
+	 * 
+	 * @param account
+	 *            object
+	 * @param requestId
+	 *            request id
+	 * @throws ServiceException
+	 */
+	void changeTariffPlan(Account account, int requestId) throws ServiceException;
+
+	/**
+	 * Verifies parameters and either passes to the DAO layer or throws an
+	 * exception
+	 * 
+	 * @param account
+	 *            object
+	 * @param payment
+	 *            object
+	 * @throws ServiceException
+	 */
+	void bringMonthlyFee(Account account, Payment payment) throws ServiceException;
+
+	/**
+	 * Verifies parameters and either passes to the DAO layer or throws an
+	 * exception
+	 * 
+	 * @param accountId
+	 *            account id
+	 * @throws ServiceException
+	 */
+	void terminateAccount(int accountId) throws ServiceException;
 }

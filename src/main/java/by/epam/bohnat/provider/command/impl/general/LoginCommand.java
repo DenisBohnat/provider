@@ -14,6 +14,7 @@ import org.apache.logging.log4j.Logger;
 import by.epam.bohnat.provider.bean.User;
 import by.epam.bohnat.provider.command.Command;
 import by.epam.bohnat.provider.command.util.Attributes;
+import by.epam.bohnat.provider.command.util.ErrorMessages;
 import by.epam.bohnat.provider.command.util.JSPNames;
 import by.epam.bohnat.provider.command.util.LogMessages;
 import by.epam.bohnat.provider.service.IAccountService;
@@ -35,6 +36,11 @@ import by.epam.bohnat.provider.service.exception.user.UserLoginServiceException;
 public class LoginCommand implements Command {
 
 	private static final Logger logger = LogManager.getLogger(LoginCommand.class.getName());
+
+	/**
+	 * Indicates that the user is an administrator
+	 */
+	private static final int IS_ADMIN = 2;
 
 	/**
 	 * Handles request to the servlet by trying to log in a user with given
@@ -60,11 +66,17 @@ public class LoginCommand implements Command {
 			IUserService uService = f.getUserService();
 			IAccountService aService = f.getAccountService();
 			User user = uService.loginUser(login, password);
-			boolean aFlag = aService.isUserGetAccount(user.getId());
-			if (!aFlag) {
-				session.setAttribute(Attributes.HAVE_ACCOUNT, false);
-			} else {
-				session.setAttribute(Attributes.HAVE_ACCOUNT, true);
+			if (user.getRole() != IS_ADMIN) {
+				boolean aFlag = aService.isUserGetAccount(user.getId());
+				if (!aFlag) {
+					session.setAttribute(Attributes.HAVE_ACCOUNT, false);
+				} else {
+					session.setAttribute(Attributes.HAVE_ACCOUNT, true);
+					session.setAttribute(Attributes.IS_BLOCKED, aService.isUserBlockedAccount(user.getId()));
+					if (aService.isUserBlockedAccount(user.getId())) {
+						request.setAttribute(Attributes.ERROR_MESSAGE, ErrorMessages.USER_IN_BAN);
+					}
+				}
 			}
 			LocalDate locDate = LocalDate.now();
 			logger.debug(String.format(LogMessages.USER_LOGGED_IN, user.getLogin(), user.getId()));

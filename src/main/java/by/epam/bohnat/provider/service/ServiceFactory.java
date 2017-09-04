@@ -1,6 +1,7 @@
 package by.epam.bohnat.provider.service;
 
 import by.epam.bohnat.provider.service.impl.AccountServiceImpl;
+import by.epam.bohnat.provider.service.impl.PaymentServiceImpl;
 import by.epam.bohnat.provider.service.impl.RequestServiceImpl;
 import by.epam.bohnat.provider.service.impl.TariffServiceImpl;
 import by.epam.bohnat.provider.service.impl.UserServiceImpl;
@@ -52,6 +53,11 @@ public class ServiceFactory {
 	 * Service object for processing data about requests
 	 */
 	private static final IRequestService requestService = new RequestServiceImpl();
+
+	/**
+	 * Service object for processing data about payments
+	 */
+	private static final IPaymentService paymentService = new PaymentServiceImpl();
 
 	/**
 	 * A constructor for creating a factory object. It can only be called from
@@ -109,5 +115,15 @@ public class ServiceFactory {
 	 */
 	public IRequestService getRequestService() {
 		return requestService;
+	}
+
+	/**
+	 * Getting a service object for processing data about payments
+	 * 
+	 * @return service object for processing data about payments
+	 * @see IPaymentService
+	 */
+	public IPaymentService getPaymentService() {
+		return paymentService;
 	}
 }

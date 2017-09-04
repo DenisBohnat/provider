@@ -34,8 +34,17 @@ import by.epam.bohnat.provider.service.exception.account.GetAccountServiceExcept
 public class BanUser implements Command {
 
 	private static final Logger logger = LogManager.getLogger(BanUser.class.getName());
+	
+	/**
+	 * Account after banning.
+	 */
 	private static final int BLOCK_ACCOUNT = 2;
 
+	/**
+	 * Identifier that indicates that the user is not an administrator
+	 */
+	private static final int NOT_ADMIN = 1;
+	
 	/**
 	 * Performs the command that reads account ID parameter from the JSP and
 	 * sends them to the relevant service class for banning user.
@@ -64,9 +73,8 @@ public class BanUser implements Command {
 			request.setAttribute(Attributes.ERROR_MESSAGE, ErrorMessages.BAN_USER_POSSIBILITY);
 			request.getRequestDispatcher(JSPNames.INDEX_PAGE).forward(request, response);
 		} else {
-			if (Integer.valueOf(session.getAttribute(Attributes.ROLE).toString()) == 1) {
+			if (Integer.valueOf(session.getAttribute(Attributes.ROLE).toString()) == NOT_ADMIN) {
 				request.setAttribute(Attributes.ERROR_MESSAGE, ErrorMessages.BAN_USER_POSSIBILITY);
-				// ???
 				request.getRequestDispatcher(JSPNames.INDEX_PAGE).forward(request, response);
 			} else {
 				int accId = Integer.parseInt(request.getParameter(Attributes.ACCOUNT_ID));

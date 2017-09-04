@@ -1,8 +1,7 @@
 package by.epam.bohnat.provider.command.impl.user;
 
 import java.io.IOException;
-import java.sql.Date;
-import java.time.LocalDate;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -19,35 +18,29 @@ import by.epam.bohnat.provider.command.util.Attributes;
 import by.epam.bohnat.provider.command.util.ErrorMessages;
 import by.epam.bohnat.provider.command.util.JSPNames;
 import by.epam.bohnat.provider.command.util.LogMessages;
-import by.epam.bohnat.provider.command.util.SuccessMessages;
 import by.epam.bohnat.provider.service.IAccountService;
+import by.epam.bohnat.provider.service.IPaymentService;
 import by.epam.bohnat.provider.service.ServiceFactory;
 import by.epam.bohnat.provider.service.exception.ServiceException;
-import by.epam.bohnat.provider.service.exception.account.EditAccountServiceException;
-import by.epam.bohnat.provider.service.exception.account.GetAccountServiceException;
+import by.epam.bohnat.provider.service.exception.payment.GetPaymentServiceException;
 
 /**
- * Class {@code BringMonthlyFee} is an implementation of {@code Command} for
- * bringing fee.
+ * Class {@code OpenUserPaymentPage} is an implementation of {@code Command} for
+ * opening user payment page.
  * 
  * @author Denis Bohnat
  * @version 1.0
  * @see Command
  */
-public class BringMonthlyFee implements Command {
+public class OpenUserPaymentPage implements Command {
 
-	private static final Logger logger = LogManager.getLogger(BringMonthlyFee.class.getName());
-
-	/**
-	 * Indicates that the user account is not blocked
-	 */
-	private static final int NOT_BLOCKED = 1;
+	private static final Logger logger = LogManager.getLogger(OpenUserPaymentPage.class.getName());
 
 	/**
-	 * Performs the command that reads user account parameters from the JSP and
-	 * sends them to the relevant service class.
+	 * Performs the command that reads user payment parameters from relevant
+	 * service class and sends them the JSP.
 	 * <p>
-	 * The method accesses the service {@code IAccountService}.
+	 * The method accesses the service {@code IPaymentService}.
 	 * <p>
 	 * Checks the access rights of the user who is performing this action. Only
 	 * registered user can use this command. If the client is not registered,
@@ -58,47 +51,37 @@ public class BringMonthlyFee implements Command {
 	 *            request / session / application attributes
 	 * @param response
 	 *            response from the servlet to the HTTP request
-	 * @throws GetAccountServiceException
-	 * @throws EditAccountServiceException
+	 * @throws GetPaymentServiceException
 	 * @throws ServiceException
 	 * @see ServiceFactory
 	 * @see IAccountService
+	 * @see IPaymentService
 	 */
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession(true);
 		if (session.getAttribute(Attributes.REGISTERED_USER) == null) {
-			request.setAttribute(Attributes.ERROR_MESSAGE, ErrorMessages.MONTHLY_FEE_POSSIBILITY);
+			request.setAttribute(Attributes.ERROR_MESSAGE, ErrorMessages.WORK_WITH_PAYMENT_POSSIBILITY);
 			request.getRequestDispatcher(JSPNames.INDEX_PAGE).forward(request, response);
 		} else {
 
 			int userId = Integer.valueOf(session.getAttribute(Attributes.USER_ID).toString());
-			float fee = Float.parseFloat(request.getParameter(Attributes.ACCOUNT_FEE));
+			int pageNumber = Integer.parseInt(request.getParameter(Attributes.PAGE_NUMBER));
 
 			try {
 				ServiceFactory f = ServiceFactory.getInstance();
 				IAccountService aService = f.getAccountService();
+				IPaymentService pService = f.getPaymentService();
 				Account account = aService.getAccountByUserId(userId);
-				float newAmount = account.getAmount() + fee;
-				account.setAmount(newAmount);
-				if (newAmount > 0) {
-					session.setAttribute(Attributes.IS_BLOCKED, false);
-					account.setBlock(NOT_BLOCKED);
-				}
-				Date regDate = Date.valueOf(LocalDate.now());
 
-				Payment payment = new Payment(0, account.getId(), regDate, fee);
+				int amountPage = pService.getNumberOfPayments(account.getId());
+				List<Payment> pList = pService.getPaymentsOnCurrentPage(pageNumber, account.getId());
 
-				aService.bringMonthlyFee(account, payment);
-				logger.debug(String.format(LogMessages.MONTHLY_FEE_ADDED, userId));
-				request.setAttribute(Attributes.SUCCESS_MESSAGE, SuccessMessages.MONTHLY_FEE_ADDED);
-				request.getRequestDispatcher(JSPNames.START_PAGE).forward(request, response);
-			} catch (GetAccountServiceException e) {
-				logger.error(String.format(LogMessages.EXCEPTION_IN_COMMAND, e.getClass().getSimpleName(),
-						this.getClass().getSimpleName()), e);
-				request.setAttribute(Attributes.ERROR_MESSAGE, e.getMessage());
-				request.getRequestDispatcher(JSPNames.START_PAGE).forward(request, response);
-			} catch (EditAccountServiceException e) {
+				request.setAttribute(Attributes.USER_PAYMENTS, pList);
+				request.setAttribute(Attributes.CURRENT_PAGE, pageNumber);
+				request.setAttribute(Attributes.PAGE_AMOUNT, amountPage);
+				request.getRequestDispatcher(JSPNames.USER_PAYMENT_PAGE).forward(request, response);
+			} catch (GetPaymentServiceException e) {
 				logger.error(String.format(LogMessages.EXCEPTION_IN_COMMAND, e.getClass().getSimpleName(),
 						this.getClass().getSimpleName()), e);
 				request.setAttribute(Attributes.ERROR_MESSAGE, e.getMessage());

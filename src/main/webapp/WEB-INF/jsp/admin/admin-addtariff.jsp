@@ -69,7 +69,7 @@
 	</div>
 </c:if>
 
-<h3 align="center">${addingTariff}</h3>
+<h4 align="center">${addingTariff}</h4>
 				<form name="addTariffForm" class="form-horizontal" method="post"
 					action="Controller" onSubmit="return validateForm(event);">
 					
@@ -87,9 +87,9 @@
 					<div class="form-group">
 						<label class="control-label col-md-3 col-sm-3">${enterType}</label>
 						<div class="col-md-9 col-sm-9 selectContainer">
-							<select class="form-control" name="tariffType">
-								<option value="1">${enterTypeUnlim}</option>
+							<select class="form-control" name="tariffType" id="terType">
 								<option value="2">${enterTypeLim}</option>
+								<option value="1">${enterTypeUnlim}</option>
 							</select>
 						</div>
 					</div>
@@ -98,7 +98,7 @@
 						<label class="control-label col-md-3 col-sm-3">${recSpeed}</label>
 						<div class="col-md-9 col-sm-9">
 							<input type="number" class="form-control"
-								placeholder="${enterRecSpeed}" name="recSpeed">
+								placeholder="${enterRecSpeed}" name="recSpeed" step="0.1">
 						</div>
 					</div>
 					
@@ -106,7 +106,7 @@
 						<label class="control-label col-md-3 col-sm-3">${transSpeed}</label>
 						<div class="col-md-9 col-sm-9">
 							<input type="number" class="form-control"
-								placeholder="${enterTransSpeed}" name="transSpeed">
+								placeholder="${enterTransSpeed}" name="transSpeed" step="0.1">
 						</div>
 					</div>
 					
@@ -114,7 +114,7 @@
 						<label class="control-label col-md-3 col-sm-3">${subscription}</label>
 						<div class="col-md-9 col-sm-9">
 							<input type="number" class="form-control"
-								placeholder="${enterSubscription}" name="subscription">
+								placeholder="${enterSubscription}" name="subscription" step="0.1">
 						</div>
 					</div>
 					
@@ -122,7 +122,7 @@
 						<label class="control-label col-md-3 col-sm-3">${trafficVolume}</label>
 						<div class="col-md-9 col-sm-9">
 							<input type="number" class="form-control"
-								placeholder="${enterTrafficVolume}" name="trafficVolume">
+								placeholder="${enterTrafficVolume}" name="trafficVolume" id="trVol" >
 						</div>
 					</div>
 					
@@ -130,7 +130,7 @@
 						<label class="control-label col-md-3 col-sm-3">${overdraft}</label>
 						<div class="col-md-9 col-sm-9">
 							<input type="number" class="form-control"
-								placeholder="${enterOverdraft}" name="overdraft">
+								placeholder="${enterOverdraft}" name="overdraft" step="0.1" id="over" >
 						</div>
 					</div>
 					
@@ -151,7 +151,13 @@
 	<jsp:include page="/WEB-INF/jsp/static/footer.jsp"></jsp:include>
 	
 <script type="text/javascript">	
-	
+document.getElementById('terType').onchange=function (){
+	document.getElementById("trVol").value = "0";
+	document.getElementById("over").value = "0";
+	document.getElementById("trVol").readOnly = this.value=='1';
+	document.getElementById("over").readOnly = this.value=='1';
+}
+
 function validateForm(event)
 {
 	event.preventDefault();
@@ -176,12 +182,12 @@ function validateForm(event)
 		return false;
 		}
 	if(document.addTariffForm.trafficVolume.value=="") {
-		alert("Subscription fee can not be empty");
+		alert("Traffic volume can not be empty");
 		document.addTariffForm.trafficVolume.focus();
 		return false;
 		}
 	if(document.addTariffForm.overdraft.value=="") {
-		alert("Subscription fee can not be empty");
+		alert("Overdraft can not be empty");
 		document.addTariffForm.overdraft.focus();
 		return false;
 		}

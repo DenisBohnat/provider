@@ -12,8 +12,10 @@ public final class ExceptionMessages {
 	public static final String ACCOUNT_NOT_ADDED = "The account was not added to the database.";
 	public static final String ACCOUNT_NOT_UPDATED = "The account was not updated to the database.";
 	public static final String ALREADY_EXIST = "Duplicate user.";
+	public static final String FEE_NOT_ADDED = "Monthly fee not added.";
 	public static final String INCORECT_PASSWORD = "Wrong password.";
 	public static final String INVALID_ACCOUNT_NUMBER = "Account number is not valid.";
+	public static final String INVALID_AMOUNT = "Amount is not valid";
 	public static final String INVALID_BIRTH_DATE = "The year must exceed 1940 and the date can not exceed today";
 	public static final String INVALID_EMAIL = "E-mail you entered is not valid.";
 	public static final String INVALID_ID = "Id is not valid.";
@@ -38,6 +40,9 @@ public final class ExceptionMessages {
 	public static final String LOGIN_NOT_FOUND = "No user with that login in the database.";
 	public static final String NO_CURRENT_ACCOUNT_IN_DB = "No account current user in the database.";
 	public static final String NO_CURRENT_REQUEST_IN_DB = "No request current user in the database.";
+	public static final String NO_NON_PAYERS_IN_DB = "No non-payers accounts in the database.";
+	public static final String NO_PAYMENTS_IN_DB = "No payments in the database.";
+	public static final String NO_REQUESRS_IN_DB = "No requests in the database.";
 	public static final String NO_TARIFFS_IN_DB = "No tariffs in the database.";
 	public static final String NO_USER_IN_DB = "No user in the database.";
 	public static final String REQUEST_NOT_ADDED = "The request was not added to the database.";
@@ -45,5 +50,6 @@ public final class ExceptionMessages {
 	public static final String SOURCE_ERROR = "The error occured in the data source!";
 	public static final String TARIFF_NOT_ADDED = "The tariff was not added to the database.";
 	public static final String TARIFF_NOT_UPDATED = "The tariff was not updated to the database.";
+	public static final String TARIFF_PLAN_NOT_CHANGED = "Tariff plan not changed.";
 	public static final String USER_NOT_UPDATED = "User was not updated to the database.";
 }

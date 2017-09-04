@@ -35,6 +35,11 @@ public class OpenAllTariffs implements Command {
 	private static final Logger logger = LogManager.getLogger(OpenAllTariffs.class.getClass());
 
 	/**
+	 * Identifier that indicates that the user is not an administrator
+	 */
+	private static final int NOT_ADMIN = 1;
+	
+	/**
 	 * Performs the command that gets list of all tariffs entities from the the
 	 * service layer and passes it to the relevant JSP.
 	 * <p>
@@ -60,9 +65,8 @@ public class OpenAllTariffs implements Command {
 			request.setAttribute(Attributes.ERROR_MESSAGE, ErrorMessages.WORK_WITH_TARIFF_POSSIBILITY);
 			request.getRequestDispatcher(JSPNames.INDEX_PAGE).forward(request, response);
 		} else {
-			if (Integer.valueOf(session.getAttribute(Attributes.ROLE).toString()) == 1) {
+			if (Integer.valueOf(session.getAttribute(Attributes.ROLE).toString()) == NOT_ADMIN) {
 				request.setAttribute(Attributes.ERROR_MESSAGE, ErrorMessages.WORK_WITH_TARIFF_POSSIBILITY);
-				// ???
 				request.getRequestDispatcher(JSPNames.INDEX_PAGE).forward(request, response);
 			} else {
 

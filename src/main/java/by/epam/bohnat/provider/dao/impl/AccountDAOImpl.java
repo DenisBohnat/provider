@@ -9,6 +9,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import by.epam.bohnat.provider.bean.Account;
+import by.epam.bohnat.provider.bean.Payment;
 import by.epam.bohnat.provider.dao.IAccountDAO;
 import by.epam.bohnat.provider.dao.exception.DAOException;
 import by.epam.bohnat.provider.dao.pool.ConnectionPool;
@@ -437,6 +438,256 @@ public class AccountDAOImpl implements IAccountDAO {
 			}
 		}
 		return accList;
+	}
+
+	/**
+	 * Method that deleting account by ID from data source.
+	 * 
+	 * @param id
+	 *            account id
+	 * @throws DAOException
+	 *             if some error occurred while processing data
+	 * @see ConnectionPool
+	 * @see DBHelper
+	 */
+	@Override
+	public void deleteAccountById(int id) throws DAOException {
+		ConnectionPool pool = null;
+		Connection con = null;
+		PreparedStatement ps = null;
+		try {
+			pool = ConnectionPool.getInstance();
+			con = pool.takeConnection();
+			ps = con.prepareStatement(DBHelper.SQL_DELETE_ACCOUNT_BY_ID);
+			ps.setInt(1, id);
+			ps.executeUpdate();
+		} catch (SQLException e) {
+			throw new DAOException(ExceptionMessages.SQL_DELETE_FAILURE, e);
+		} catch (ConnectionPoolException e) {
+			throw new DAOException(ExceptionMessages.CONNECTION_NOT_TAKEN, e);
+		} finally {
+			try {
+				if (ps != null) {
+					ps.close();
+				}
+			} catch (SQLException e) {
+				throw new DAOException(ExceptionMessages.STATEMENT_NOT_CLOSED, e);
+			} finally {
+				if (con != null) {
+					try {
+						pool.returnConnection(con);
+					} catch (ConnectionPoolException e) {
+						throw new DAOException(ExceptionMessages.CONNECTION_NOT_RETURNED, e);
+					}
+				}
+			}
+		}
+	}
+
+	/**
+	 * Method that changing tariff pan, updating user account and deleting user
+	 * request.
+	 * 
+	 * @param account
+	 *            object
+	 * @param requestId
+	 *            request id
+	 * @return boolean variable that indicates that changing tariff plan was
+	 *         successful
+	 * @throws DAOException
+	 *             if some error occurred while processing data
+	 * @see ConnectionPool
+	 * @see DBHelper
+	 */
+	@Override
+	public boolean changeTariffPlan(Account account, int requestId) throws DAOException {
+		boolean flag = false;
+		ConnectionPool pool = null;
+		Connection con = null;
+		PreparedStatement psAccount = null;
+		PreparedStatement psRequest = null;
+		try {
+			pool = ConnectionPool.getInstance();
+			con = pool.takeConnection();
+			con.setAutoCommit(false);
+			psAccount = con.prepareStatement(DBHelper.SQL_UPDATE_ACCOUNT);
+			psAccount.setInt(1, account.getUserId());
+			psAccount.setInt(2, account.getTariffId());
+			psAccount.setInt(3, account.getBlock());
+			psAccount.setLong(4, account.getAccountNumber());
+			psAccount.setFloat(5, account.getAmount());
+			psAccount.setDate(6, account.getPaymentDate());
+			psAccount.setInt(7, account.getSpentTraffic());
+			psAccount.setInt(8, account.getId());
+			psAccount.executeUpdate();
+			psRequest = con.prepareStatement(DBHelper.SQL_DELETE_REQUEST_BY_ID);
+			psRequest.setInt(1, requestId);
+			psRequest.executeUpdate();
+			con.commit();
+			flag = true;
+		} catch (SQLException e) {
+			try {
+				con.rollback();
+			} catch (SQLException e1) {
+				throw new DAOException(ExceptionMessages.ROLLBACK_FAILURE, e);
+			}
+			throw new DAOException(ExceptionMessages.SQL_UPDATE_FAILURE, e);
+		} catch (ConnectionPoolException e) {
+			throw new DAOException(ExceptionMessages.CONNECTION_NOT_TAKEN, e);
+		} finally {
+			try {
+				if (psAccount != null) {
+					psAccount.close();
+				}
+				if (psRequest != null) {
+					psRequest.close();
+				}
+			} catch (SQLException e) {
+				throw new DAOException(ExceptionMessages.STATEMENT_NOT_CLOSED, e);
+			} finally {
+				if (con != null) {
+					try {
+						pool.returnConnection(con);
+					} catch (ConnectionPoolException e) {
+						throw new DAOException(ExceptionMessages.CONNECTION_NOT_RETURNED, e);
+					}
+				}
+			}
+		}
+		return flag;
+	}
+
+	/**
+	 * Method that bringing fee, updating user account and adding payment to the
+	 * data source.
+	 * 
+	 * @param account
+	 *            object
+	 * @param payment
+	 *            object
+	 * @return boolean variable that indicates that bringing fee was successful
+	 * @throws DAOException
+	 *             if some error occurred while processing data
+	 * @see ConnectionPool
+	 * @see DBHelper
+	 */
+	@Override
+	public boolean bringMonthlyFee(Account account, Payment payment) throws DAOException {
+		boolean flag = false;
+		ConnectionPool pool = null;
+		Connection con = null;
+		PreparedStatement psAccount = null;
+		PreparedStatement psPayment = null;
+		try {
+			pool = ConnectionPool.getInstance();
+			con = pool.takeConnection();
+			con.setAutoCommit(false);
+			psAccount = con.prepareStatement(DBHelper.SQL_UPDATE_ACCOUNT);
+			psAccount.setInt(1, account.getUserId());
+			psAccount.setInt(2, account.getTariffId());
+			psAccount.setInt(3, account.getBlock());
+			psAccount.setLong(4, account.getAccountNumber());
+			psAccount.setFloat(5, account.getAmount());
+			psAccount.setDate(6, account.getPaymentDate());
+			psAccount.setInt(7, account.getSpentTraffic());
+			psAccount.setInt(8, account.getId());
+			psAccount.executeUpdate();
+			psPayment = con.prepareStatement(DBHelper.SQL_INSERT_PAYMENT);
+			psPayment.setInt(1, payment.getId());
+			psPayment.setInt(2, payment.getAccountId());
+			psPayment.setDate(3, payment.getPaymentDate());
+			psPayment.setFloat(4, payment.getPaymentAmount());
+			psPayment.executeUpdate();
+			con.commit();
+			flag = true;
+		} catch (SQLException e) {
+			try {
+				con.rollback();
+			} catch (SQLException e1) {
+				throw new DAOException(ExceptionMessages.ROLLBACK_FAILURE, e);
+			}
+			throw new DAOException(ExceptionMessages.SQL_UPDATE_FAILURE, e);
+		} catch (ConnectionPoolException e) {
+			throw new DAOException(ExceptionMessages.CONNECTION_NOT_TAKEN, e);
+		} finally {
+			try {
+				if (psAccount != null) {
+					psAccount.close();
+				}
+				if (psPayment != null) {
+					psPayment.close();
+				}
+			} catch (SQLException e) {
+				throw new DAOException(ExceptionMessages.STATEMENT_NOT_CLOSED, e);
+			} finally {
+				if (con != null) {
+					try {
+						pool.returnConnection(con);
+					} catch (ConnectionPoolException e) {
+						throw new DAOException(ExceptionMessages.CONNECTION_NOT_RETURNED, e);
+					}
+				}
+			}
+		}
+		return flag;
+	}
+
+	/**
+	 * Method that deleting user account and payments.
+	 * 
+	 * @param accountId
+	 *            account id
+	 * @throws DAOException
+	 *             if some error occurred while processing data
+	 * @see ConnectionPool
+	 * @see DBHelper
+	 */
+	@Override
+	public void terminateAccount(int accountId) throws DAOException {
+		ConnectionPool pool = null;
+		Connection con = null;
+		PreparedStatement psAccount = null;
+		PreparedStatement psPayment = null;
+		try {
+			pool = ConnectionPool.getInstance();
+			con = pool.takeConnection();
+			con.setAutoCommit(false);
+			psPayment = con.prepareStatement(DBHelper.SQL_DELETE_PAYMENT_BY_ACCOUNT_ID);
+			psPayment.setInt(1, accountId);
+			psPayment.executeUpdate();
+			psAccount = con.prepareStatement(DBHelper.SQL_DELETE_ACCOUNT_BY_ID);
+			psAccount.setInt(1, accountId);
+			psAccount.executeUpdate();
+			con.commit();
+		} catch (SQLException e) {
+			try {
+				con.rollback();
+			} catch (SQLException e1) {
+				throw new DAOException(ExceptionMessages.ROLLBACK_FAILURE, e);
+			}
+			throw new DAOException(ExceptionMessages.SQL_DELETE_FAILURE, e);
+		} catch (ConnectionPoolException e) {
+			throw new DAOException(ExceptionMessages.CONNECTION_NOT_TAKEN, e);
+		} finally {
+			try {
+				if (psAccount != null) {
+					psAccount.close();
+				}
+				if (psPayment != null) {
+					psPayment.close();
+				}
+			} catch (SQLException e) {
+				throw new DAOException(ExceptionMessages.STATEMENT_NOT_CLOSED, e);
+			} finally {
+				if (con != null) {
+					try {
+						pool.returnConnection(con);
+					} catch (ConnectionPoolException e) {
+						throw new DAOException(ExceptionMessages.CONNECTION_NOT_RETURNED, e);
+					}
+				}
+			}
+		}
 	}
 
 }

@@ -28,11 +28,6 @@ import by.epam.bohnat.provider.service.util.Validator;
 public class UserServiceImpl implements IUserService {
 
 	/**
-	 * Number of users per page
-	 */
-	private static final int NUMBER_OF_USERS_ADMINS_ON_PAGE = 8;
-
-	/**
 	 * This method is used to delete user by ID and validate input data
 	 * 
 	 * @param id
@@ -456,6 +451,8 @@ public class UserServiceImpl implements IUserService {
 	/**
 	 * This method is used to get counts of pages needed to locate all users
 	 * 
+	 * @param elementsPerPage
+	 *            option
 	 * @return total pages amount
 	 * @throws ServiceException
 	 *             if any error occurred while processing method
@@ -464,15 +461,15 @@ public class UserServiceImpl implements IUserService {
 	 * @see ExceptionMessages
 	 */
 	@Override
-	public int getNumberOfUserPages() throws ServiceException {
+	public int getNumberOfUserPages(int elementsPerPage) throws ServiceException {
 		try {
 			DAOFactory factory = DAOFactory.getInstance();
 			IUserDAO userDAO = factory.getUserDAO();
 			int numberOfUses = userDAO.getNumberOfUsers();
-			if (numberOfUses % NUMBER_OF_USERS_ADMINS_ON_PAGE == 0) {
-				return numberOfUses / NUMBER_OF_USERS_ADMINS_ON_PAGE;
+			if (numberOfUses % elementsPerPage == 0) {
+				return numberOfUses / elementsPerPage;
 			} else {
-				return numberOfUses / NUMBER_OF_USERS_ADMINS_ON_PAGE + 1;
+				return numberOfUses / elementsPerPage + 1;
 			}
 		} catch (DAOException e) {
 			throw new ServiceException(ExceptionMessages.SOURCE_ERROR, e);
@@ -485,6 +482,8 @@ public class UserServiceImpl implements IUserService {
 	 * 
 	 * @param pageNumber
 	 *            page number
+	 * @param elementsPerPage
+	 *            option
 	 * @return list of users-customers
 	 * @throws GetUserServiceException
 	 *             if user entity not found in data source
@@ -496,16 +495,16 @@ public class UserServiceImpl implements IUserService {
 	 * @see ExceptionMessages
 	 */
 	@Override
-	public List<User> getUsersOnCurrentPage(int pageNumber) throws ServiceException {
+	public List<User> getUsersOnCurrentPage(int pageNumber, int elementsPerPage) throws ServiceException {
 		if (!Validator.validateInt(pageNumber)) {
 			throw new GetUserServiceException(ExceptionMessages.INVALID_INT);
 		}
 		List<User> userList = new LinkedList<User>();
-		int start = (pageNumber - 1) * NUMBER_OF_USERS_ADMINS_ON_PAGE;
+		int start = (pageNumber - 1) * elementsPerPage;
 		try {
 			DAOFactory factory = DAOFactory.getInstance();
 			IUserDAO userDAO = factory.getUserDAO();
-			userList = userDAO.getUsersListPart(start, NUMBER_OF_USERS_ADMINS_ON_PAGE);
+			userList = userDAO.getUsersListPart(start, elementsPerPage);
 			if (userList == null) {
 				throw new GetUserServiceException(ExceptionMessages.NO_USER_IN_DB);
 			}
@@ -519,6 +518,8 @@ public class UserServiceImpl implements IUserService {
 	 * This method is used to get counts of pages needed to locate all
 	 * administrators
 	 * 
+	 * @param elementsPerPage
+	 *            option
 	 * @return total pages amount
 	 * @throws ServiceException
 	 *             if any error occurred while processing method
@@ -527,15 +528,15 @@ public class UserServiceImpl implements IUserService {
 	 * @see ExceptionMessages
 	 */
 	@Override
-	public int getNumberOfAdminsPages() throws ServiceException {
+	public int getNumberOfAdminsPages(int elementsPerPage) throws ServiceException {
 		try {
 			DAOFactory factory = DAOFactory.getInstance();
 			IUserDAO userDAO = factory.getUserDAO();
 			int numberOfAdmins = userDAO.getNumberOfAdmins();
-			if (numberOfAdmins % NUMBER_OF_USERS_ADMINS_ON_PAGE == 0) {
-				return numberOfAdmins / NUMBER_OF_USERS_ADMINS_ON_PAGE;
+			if (numberOfAdmins % elementsPerPage == 0) {
+				return numberOfAdmins / elementsPerPage;
 			} else {
-				return numberOfAdmins / NUMBER_OF_USERS_ADMINS_ON_PAGE + 1;
+				return numberOfAdmins / elementsPerPage + 1;
 			}
 		} catch (DAOException e) {
 			throw new ServiceException(ExceptionMessages.SOURCE_ERROR, e);
@@ -548,6 +549,8 @@ public class UserServiceImpl implements IUserService {
 	 * 
 	 * @param pageNumber
 	 *            page number
+	 * @param elementsPerPage
+	 *            option
 	 * @return list of administrators
 	 * @throws GetUserServiceException
 	 *             if user entity not found in data source
@@ -559,16 +562,16 @@ public class UserServiceImpl implements IUserService {
 	 * @see ExceptionMessages
 	 */
 	@Override
-	public List<User> getAdminsOnCurrentPage(int pageNumber) throws ServiceException {
+	public List<User> getAdminsOnCurrentPage(int pageNumber, int elementsPerPage) throws ServiceException {
 		if (!Validator.validateInt(pageNumber)) {
 			throw new GetUserServiceException(ExceptionMessages.INVALID_INT);
 		}
 		List<User> adminList = new LinkedList<User>();
-		int start = (pageNumber - 1) * NUMBER_OF_USERS_ADMINS_ON_PAGE;
+		int start = (pageNumber - 1) * elementsPerPage;
 		try {
 			DAOFactory factory = DAOFactory.getInstance();
 			IUserDAO userDAO = factory.getUserDAO();
-			adminList = userDAO.getAdminsListPart(start, NUMBER_OF_USERS_ADMINS_ON_PAGE);
+			adminList = userDAO.getAdminsListPart(start, elementsPerPage);
 			if (adminList == null) {
 				throw new GetUserServiceException(ExceptionMessages.NO_USER_IN_DB);
 			}

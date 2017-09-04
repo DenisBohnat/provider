@@ -6,7 +6,7 @@ import java.util.Map;
 import by.epam.bohnat.provider.command.impl.admin.AddTariff;
 import by.epam.bohnat.provider.command.impl.admin.AddUser;
 import by.epam.bohnat.provider.command.impl.admin.BanUser;
-import by.epam.bohnat.provider.command.impl.admin.DeleteRequest;
+import by.epam.bohnat.provider.command.impl.admin.ChangeTariffPlan;
 import by.epam.bohnat.provider.command.impl.admin.DeleteTariff;
 import by.epam.bohnat.provider.command.impl.admin.DeleteUser;
 import by.epam.bohnat.provider.command.impl.admin.EditTariff;
@@ -21,6 +21,7 @@ import by.epam.bohnat.provider.command.impl.admin.OpenEditingTariffPage;
 import by.epam.bohnat.provider.command.impl.admin.OpenUserDetailsPage;
 import by.epam.bohnat.provider.command.impl.general.CancelCommand;
 import by.epam.bohnat.provider.command.impl.general.ChangeLanguage;
+import by.epam.bohnat.provider.command.impl.general.DeleteRequest;
 import by.epam.bohnat.provider.command.impl.general.EditProfile;
 import by.epam.bohnat.provider.command.impl.general.LoginCommand;
 import by.epam.bohnat.provider.command.impl.general.LogoutCommand;
@@ -33,10 +34,13 @@ import by.epam.bohnat.provider.command.impl.general.OpenStartPage;
 import by.epam.bohnat.provider.command.impl.general.OpenUnlimTariffsPage;
 import by.epam.bohnat.provider.command.impl.general.SignUpCommand;
 import by.epam.bohnat.provider.command.impl.user.BringMonthlyFee;
+import by.epam.bohnat.provider.command.impl.user.BuyTariff;
 import by.epam.bohnat.provider.command.impl.user.OpenUserAccountPage;
 import by.epam.bohnat.provider.command.impl.user.OpenUserFeePage;
+import by.epam.bohnat.provider.command.impl.user.OpenUserPaymentPage;
 import by.epam.bohnat.provider.command.impl.user.OpenUserRequestPage;
 import by.epam.bohnat.provider.command.impl.user.SendRequest;
+import by.epam.bohnat.provider.command.impl.user.TerminateAccount;
 
 /**
  * Sets the accordance between command names performed in {@code CommandName}
@@ -101,6 +105,10 @@ public class CommandHelper {
 		commands.put(CommandName.OPEN_ALL_REQUESTS_PAGE, new OpenAllRequestsPage());
 		commands.put(CommandName.OPEN_ALL_NON_PAYERS_PAGE, new OpenAllNonPayersPage());
 		commands.put(CommandName.OPEN_START_PAGE, new OpenStartPage());
+		commands.put(CommandName.BUY_TARIFF, new BuyTariff());
+		commands.put(CommandName.TERMINATE_ACCOUNT, new TerminateAccount());
+		commands.put(CommandName.CHANGE_TARIFF_PLAN, new ChangeTariffPlan());
+		commands.put(CommandName.OPEN_USER_PAYMENT_PAGE, new OpenUserPaymentPage());
 	}
 
 	/**

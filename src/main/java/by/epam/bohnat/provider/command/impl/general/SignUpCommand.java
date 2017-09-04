@@ -78,7 +78,6 @@ public class SignUpCommand implements Command {
 				IUserService uService = f.getUserService();
 				uService.addUser(user);
 				request.setAttribute(Attributes.SUCCESS_MESSAGE, SuccessMessages.USER_ADDED);
-				// ??
 				request.getRequestDispatcher(JSPNames.INDEX_PAGE).forward(request, response);
 			} catch (ServiceSignUpException e) {
 				logger.error(String.format(LogMessages.EXCEPTION_IN_COMMAND, e.getClass().getSimpleName(),

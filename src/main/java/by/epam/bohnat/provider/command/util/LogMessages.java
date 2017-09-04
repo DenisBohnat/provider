@@ -9,6 +9,7 @@ package by.epam.bohnat.provider.command.util;
  */
 public final class LogMessages {
 
+	public static final String ACCOUNT_DELETED = "Account (had id #%s) was deleted from the database.";
 	public static final String EXCEPTION_IN_COMMAND = "%s occured in %s command.";
 	public static final String MONTHLY_FEE_ADDED = "User (id #%s) added monthly fee.";
 	public static final String REQUEST_ADDED = "Request was added to the database.";

@@ -27,6 +27,7 @@ public final class JSPNames {
 	public static final String UNLIM_TARIFFS_PAGE = "WEB-INF/jsp/general/unlim-tariffs.jsp";
 	public static final String USER_ACCOUNT_PAGE = "WEB-INF/jsp/user/user-account.jsp";
 	public static final String USER_FEE_PAGE = "WEB-INF/jsp/user/user-fee.jsp";
+	public static final String USER_PAYMENT_PAGE = "WEB-INF/jsp/user/user-payment.jsp";
 	public static final String USER_REQUEST_PAGE = "WEB-INF/jsp/user/user-request.jsp";
 
 	private JSPNames() {

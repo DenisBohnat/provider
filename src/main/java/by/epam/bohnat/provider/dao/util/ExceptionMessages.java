@@ -19,6 +19,7 @@ public final class ExceptionMessages {
 	public static final String NOT_FIND_DATABASE_DRIVER = "Unable to find the driver for the database";
 	public static final String POOL_NOT_DESTROY = "Connection pool has not been destroyed";
 	public static final String POOL_NOT_INIT = "Connection pool has not been initialized";
+	public static final String ROLLBACK_FAILURE = "Failure during the rollback transaction";
 	public static final String SQL_DELETE_FAILURE = "Failure during the SQL delete request execution";
 	public static final String SQL_EXCEPTION_IN_POOL = "SQLException happened in ConnectionPool";
 	public static final String SQL_INSERT_FAILURE = "Failure during the SQL insert request execution";

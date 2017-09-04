@@ -41,6 +41,11 @@ public class OpenUserDetailsPage implements Command {
 	private static final Logger logger = LogManager.getLogger(OpenUserDetailsPage.class.getName());
 
 	/**
+	 * Identifier that indicates that the user is not an administrator
+	 */
+	private static final int NOT_ADMIN = 1;
+	
+	/**
 	 * Performs the command that gets tariff, user, account, request entities
 	 * from the the service layer and passes it to the relevant JSP.
 	 * <p>
@@ -69,9 +74,8 @@ public class OpenUserDetailsPage implements Command {
 			request.setAttribute(Attributes.ERROR_MESSAGE, ErrorMessages.WORK_USER_INFORMATION_POSSIBILITY);
 			request.getRequestDispatcher(JSPNames.INDEX_PAGE).forward(request, response);
 		} else {
-			if (Integer.valueOf(session.getAttribute(Attributes.ROLE).toString()) == 1) {
+			if (Integer.valueOf(session.getAttribute(Attributes.ROLE).toString()) == NOT_ADMIN) {
 				request.setAttribute(Attributes.ERROR_MESSAGE, ErrorMessages.WORK_USER_INFORMATION_POSSIBILITY);
-				// ???
 				request.getRequestDispatcher(JSPNames.INDEX_PAGE).forward(request, response);
 			} else {
 				int curUserId = Integer.valueOf(request.getParameter(Attributes.CURRENT_USER_ID));
@@ -80,7 +84,7 @@ public class OpenUserDetailsPage implements Command {
 					IUserService uService = f.getUserService();
 					User curUser = uService.getUserById(curUserId);
 
-					if (curUser.getRole() == 1) {
+					if (curUser.getRole() == NOT_ADMIN) {
 						IRequestService rService = f.getRequestService();
 						IAccountService aService = f.getAccountService();
 						ITariffService tService = f.getTariffService();

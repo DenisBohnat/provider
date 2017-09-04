@@ -22,10 +22,12 @@ public final class Attributes {
 	public static final String CURRENT_USER_ROLE = "curUserRole";
 	public static final String DEFAULTERS_ACCOUNTS = "defAccounts";
 	public static final String DESCRIPTION = "description";
+	public static final String ELEMENTS_PER_PAGE_ATTR = "elementsPerPage";
 	public static final String ERROR_MESSAGE = "errorMessage";
 	public static final String HAVE_ACCOUNT = "haveAccount";
 	public static final String HAVE_REQUEST = "haveRequest";
 	public static final String IS_ADMIN = "isAdmin";
+	public static final String IS_BLOCKED = "isBlocked";
 	public static final String LANGUAGE = "language";
 	public static final String LIMITED_TARIFFS = "limTariffs";
 	public static final String LOCAL_DATE = "locDate";
@@ -58,6 +60,7 @@ public final class Attributes {
 	public static final String USER_NAME = "nameUser";
 	public static final String USER_NAMES = "uNames";
 	public static final String USER_PASSWORD = "passwordUser";
+	public static final String USER_PAYMENTS = "paymentList";
 	public static final String USER_PHONE = "phoneUser";
 	public static final String USER_REGDAY = "regDateUser";
 	public static final String USER_REQUESTS = "uRequests";

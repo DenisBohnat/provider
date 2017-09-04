@@ -38,6 +38,11 @@ public class OpenAllNonPayersPage implements Command {
 	private static final Logger logger = LogManager.getLogger(OpenAllNonPayersPage.class.getName());
 
 	/**
+	 * Identifier that indicates that the user is not an administrator
+	 */
+	private static final int NOT_ADMIN = 1;
+	
+	/**
 	 * Performs the command that gets list of all non-payers (account entities)
 	 * from the the service layer and passes it to the relevant JSP.
 	 * <p>
@@ -64,9 +69,8 @@ public class OpenAllNonPayersPage implements Command {
 			request.setAttribute(Attributes.ERROR_MESSAGE, ErrorMessages.CHANGE_NON_PAYERS_POSSIBILITY);
 			request.getRequestDispatcher(JSPNames.INDEX_PAGE).forward(request, response);
 		} else {
-			if (Integer.valueOf(session.getAttribute(Attributes.ROLE).toString()) == 1) {
+			if (Integer.valueOf(session.getAttribute(Attributes.ROLE).toString()) == NOT_ADMIN) {
 				request.setAttribute(Attributes.ERROR_MESSAGE, ErrorMessages.CHANGE_NON_PAYERS_POSSIBILITY);
-				// ???
 				request.getRequestDispatcher(JSPNames.INDEX_PAGE).forward(request, response);
 			} else {
 

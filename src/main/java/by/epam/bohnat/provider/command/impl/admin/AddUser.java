@@ -37,6 +37,11 @@ public class AddUser implements Command {
 	private static final Logger logger = LogManager.getLogger(AddUser.class.getName());
 
 	/**
+	 * Identifier that indicates that the user is not an administrator
+	 */
+	private static final int NOT_ADMIN = 1;
+	
+	/**
 	 * Performs the command that reads new user parameters from the JSP and
 	 * sends them to the relevant service class.
 	 * <p>
@@ -63,9 +68,8 @@ public class AddUser implements Command {
 			request.setAttribute(Attributes.ERROR_MESSAGE, ErrorMessages.ADD_USER_POSSIBILITY);
 			request.getRequestDispatcher(JSPNames.INDEX_PAGE).forward(request, response);
 		} else {
-			if (Integer.valueOf(session.getAttribute(Attributes.ROLE).toString()) == 1) {
+			if (Integer.valueOf(session.getAttribute(Attributes.ROLE).toString()) == NOT_ADMIN) {
 				request.setAttribute(Attributes.ERROR_MESSAGE, ErrorMessages.ADD_USER_POSSIBILITY);
-				// ???
 				request.getRequestDispatcher(JSPNames.INDEX_PAGE).forward(request, response);
 			} else {
 				String name = request.getParameter(Attributes.USER_NAME);
@@ -86,7 +90,6 @@ public class AddUser implements Command {
 					uService.addUser(user);
 					logger.debug(String.format(LogMessages.USER_ADDED, user.getLogin()));
 					request.setAttribute(Attributes.SUCCESS_MESSAGE, SuccessMessages.USER_ADDED);
-					// ??
 					request.getRequestDispatcher(JSPNames.START_PAGE).forward(request, response);
 				} catch (ServiceSignUpException e) {
 					logger.error(String.format(LogMessages.EXCEPTION_IN_COMMAND, e.getClass().getSimpleName(),

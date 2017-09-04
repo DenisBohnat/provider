@@ -39,6 +39,16 @@ public class ChangeTariffPlan implements Command {
 	private static final Logger logger = LogManager.getLogger(ChangeTariffPlan.class.getName());
 
 	/**
+	 * Traffic after changing tariff plan by user request
+	 */
+	private static final int TRAFFIC_AFTER_CHANGING = 0;
+
+	/**
+	 * Identifier that indicates that the user is not an administrator
+	 */
+	private static final int NOT_ADMIN = 1;
+	
+	/**
 	 * Performs the command that reads user ID and tariff ID parameters from the
 	 * JSP and sends them to the relevant service class for changing user tariff
 	 * plan by request.
@@ -69,28 +79,30 @@ public class ChangeTariffPlan implements Command {
 			request.setAttribute(Attributes.ERROR_MESSAGE, ErrorMessages.CHANGE_TARIFF_BY_REQUEST_POSSIBILITY);
 			request.getRequestDispatcher(JSPNames.INDEX_PAGE).forward(request, response);
 		} else {
-			if (Integer.valueOf(session.getAttribute(Attributes.ROLE).toString()) == 1) {
+			if (Integer.valueOf(session.getAttribute(Attributes.ROLE).toString()) == NOT_ADMIN) {
 				request.setAttribute(Attributes.ERROR_MESSAGE, ErrorMessages.CHANGE_TARIFF_BY_REQUEST_POSSIBILITY);
-				// ???
 				request.getRequestDispatcher(JSPNames.INDEX_PAGE).forward(request, response);
 			} else {
 
 				int userId = Integer.parseInt(request.getParameter(Attributes.USER_ID));
 				int tariffId = Integer.parseInt(request.getParameter(Attributes.TARIFF_ID));
+				int requestId = Integer.parseInt(request.getParameter(Attributes.REQUEST_ID));
 
 				try {
 					ServiceFactory f = ServiceFactory.getInstance();
 					IAccountService aService = f.getAccountService();
 					ITariffService tService = f.getTariffService();
+
 					Account account = aService.getAccountByUserId(userId);
 					Tariff aTariff = tService.getTariffById(account.getTariffId());
 					account.setTariffId(tariffId);
 					float trafficAmount = account.getAmount()
 							- account.getSpentTraffic() * aTariff.getOverdraftAmount();
 					account.setAmount(trafficAmount);
-					aService.updateAccount(account);
+					account.setSpentTraffic(TRAFFIC_AFTER_CHANGING);
+					aService.changeTariffPlan(account, requestId);
 					logger.debug(String.format(LogMessages.TARIFF_PLAN_CHANGED, userId));
-					request.setAttribute(Attributes.SUCCESS_MESSAGE, SuccessMessages.ACCOUNT_UPDATED);
+					request.setAttribute(Attributes.SUCCESS_MESSAGE, SuccessMessages.TARIFF_PLAN_CHANGED);
 					request.getRequestDispatcher(JSPNames.START_PAGE).forward(request, response);
 				} catch (GetAccountServiceException e) {
 					logger.error(String.format(LogMessages.EXCEPTION_IN_COMMAND, e.getClass().getSimpleName(),

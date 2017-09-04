@@ -38,19 +38,37 @@
 <fmt:message bundle="${loc}" key="local.user.customer" var="customer" />
 <fmt:message bundle="${loc}" key="local.user.administrator"
 	var="administrator" />
+<fmt:message bundle="${loc}" key="local.leftsidebar.payments" var="payments" />
 
 <div class="col-sm-3 col-md-2 sidebar">
 	<ul class="nav nav-pills nav-stacked">
 		<c:choose>
 			<c:when test="${sessionScope.role == 1}">
-			<li><a href="<c:url value="/Controller?command=open_user_account_page" />">${account}</a></li>
+			
 			<c:choose>
 			<c:when test="${sessionScope.haveAccount}">
+			<c:choose>
+			<c:when test="${sessionScope.isBlocked}">
+			<li><a href="<c:url value="/Controller?command=open_user_fee_page" />">${monthlyFee}</a></li>
+			<li><a href="<c:url value="/Controller?command=open_user_payment_page&pageNumber=1&userId=${sessionScope.userId}" />">${payments}</a></li>
+			<li><a href="<c:url value="/Controller?command=open_profile" />">${profile}</a></li>
+			</c:when>
+			<c:otherwise>
+			<li><a href="<c:url value="/Controller?command=open_user_account_page" />">${account}</a></li>
 			<li><a href="<c:url value="/Controller?command=open_user_request_page" />">${writeRequest}</a></li>
 			<li><a href="<c:url value="/Controller?command=open_user_fee_page" />">${monthlyFee}</a></li>
-			</c:when>
-			</c:choose>
+			<li><a href="<c:url value="/Controller?command=open_user_payment_page&pageNumber=1&userId=${sessionScope.userId}" />">${payments}</a></li>
 			<li><a href="<c:url value="/Controller?command=open_profile" />">${profile}</a></li>
+			</c:otherwise>
+			</c:choose>
+			
+			</c:when>
+			<c:otherwise>
+			<li><a href="<c:url value="/Controller?command=open_user_account_page" />">${account}</a></li>
+			<li><a href="<c:url value="/Controller?command=open_profile" />">${profile}</a></li>
+			</c:otherwise>
+			</c:choose>
+			
 			</c:when>
 			<c:otherwise>
 				<li class="dropdown"><a class="dropdown-toggle"
@@ -64,8 +82,8 @@
 				<li class="dropdown"><a class="dropdown-toggle"
 					data-toggle="dropdown" href="#">${users}<span class="caret"></span></a>
 					<ul class="dropdown-menu">
-						<li><a href="<c:url value="/Controller?command=show_customers&pageNumber=1" />">${customer}</a></li>
-						<li><a href="<c:url value="/Controller?command=show_admins&pageNumber=1" />">${administrator}</a></li>
+						<li><a href="<c:url value="/Controller?command=show_customers&pageNumber=1&elementsPerPage=8" />">${customer}</a></li>
+						<li><a href="<c:url value="/Controller?command=show_admins&pageNumber=1&elementsPerPage=8" />">${administrator}</a></li>
 						<li><a href="<c:url value="/Controller?command=open_add_user_page" />">${addUsers}</a></li>
 					</ul></li>
 				<li><a href="<c:url value="/Controller?command=open_all_non_payers_page&pageNumber=1" />">${nonPayers}</a></li>	

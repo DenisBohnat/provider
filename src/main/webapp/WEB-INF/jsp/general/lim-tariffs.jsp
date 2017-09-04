@@ -31,7 +31,7 @@
 <jsp:include page="/WEB-INF/jsp/static/header.jsp"></jsp:include>
 
 <div class="container">
-  <h3>${liTariff}</h3>           
+  <h4>${liTariff}</h4>           
   <table class="table table-bordered table-responsive table-condensed">
     <thead>
       <tr>

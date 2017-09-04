@@ -82,7 +82,7 @@ public final class Validator {
 	 * @return true if the value is positive, false otherwise
 	 */
 	public static boolean validateInt(int i) {
-		return i > 0;
+		return i >= 0;
 	}
 
 	/**

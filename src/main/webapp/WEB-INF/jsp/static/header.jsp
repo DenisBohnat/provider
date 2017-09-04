@@ -15,6 +15,7 @@
 <fmt:message bundle="${loc}" key="local.header.liTariff" var="liTariff" />
 <fmt:message bundle="${loc}" key="local.header.aboutUs" var="aboutUs" />
 <fmt:message bundle="${loc}" key="local.header.login" var="login" />
+<fmt:message bundle="${loc}" key="local.header.logout" var="logout" />
 <fmt:message bundle="${loc}" key="local.header.password" var="password" />
 <fmt:message bundle="${loc}" key="local.header.signIn" var="signIn" />
 <fmt:message bundle="${loc}" key="local.header.signUp" var="signUp" />
@@ -63,7 +64,7 @@
 						<input type="hidden" name="command" value="logout" />
 					</div>
 
-					<button type="submit" class="btn btn-primary" name="Log out">Logout</button>
+					<button type="submit" class="btn btn-primary" name="Log out">${logout}</button>
 
 
 					<div class="form-group lang-group">

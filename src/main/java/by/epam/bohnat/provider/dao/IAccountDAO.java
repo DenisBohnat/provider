@@ -3,6 +3,7 @@ package by.epam.bohnat.provider.dao;
 import java.util.List;
 
 import by.epam.bohnat.provider.bean.Account;
+import by.epam.bohnat.provider.bean.Payment;
 import by.epam.bohnat.provider.dao.exception.DAOException;
 
 /**
@@ -88,4 +89,50 @@ public interface IAccountDAO {
 	 * @throws DAOException
 	 */
 	List<Account> getNonPayersListPart(int start, int amount) throws DAOException;
+
+	/**
+	 * This method is used to delete account from the data source by ID
+	 * 
+	 * @param id
+	 *            account id
+	 * @throws DAOException
+	 */
+	void deleteAccountById(int id) throws DAOException;
+
+	/**
+	 * This method is used to changing tariff plan and adding information to the
+	 * data source
+	 * 
+	 * @param account
+	 *            object
+	 * @param requestId
+	 *            user request id
+	 * @return boolean variable that indicates that changing tariff plan was
+	 *         successful
+	 * @throws DAOException
+	 */
+	boolean changeTariffPlan(Account account, int requestId) throws DAOException;
+
+	/**
+	 * This method is used to bringing fee and adding information to the data
+	 * source
+	 * 
+	 * @param account
+	 *            object
+	 * @param payment
+	 *            object
+	 * @return boolean variable that indicates that bringing fee was successful
+	 * @throws DAOException
+	 */
+	boolean bringMonthlyFee(Account account, Payment payment) throws DAOException;
+
+	/**
+	 * This method is used to terminating user account and deleting all
+	 * information about it.
+	 * 
+	 * @param accountId
+	 *            account id
+	 * @throws DAOException
+	 */
+	void terminateAccount(int accountId) throws DAOException;
 }

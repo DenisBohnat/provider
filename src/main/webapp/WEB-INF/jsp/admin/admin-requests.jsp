@@ -18,6 +18,7 @@
 	var="editChange" />
 <fmt:message bundle="${loc}" key="local.user.details" var="details" />
 <fmt:message bundle="${loc}" key="local.title.requests" var="requests" />
+<fmt:message bundle="${loc}" key="local.pageMessages.showRequests" var="showRequests" />
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -38,6 +39,7 @@
 			<jsp:include page="/WEB-INF/jsp/static/left-sidebar.jsp"></jsp:include>
 			<div class="col-md-10 col-sm-9 main content">
 
+<h4 align="center">${showRequests}</h4>
 				<table class="table table-bordered table-responsive table-condensed">
 					<thead>
 						<tr>
@@ -71,7 +73,7 @@
 										<ul class="dropdown-menu">
 											<li><a
 												href="<c:url value="/Controller?command=open_user_details_page&curUserId=${uRequest.getUserId()}" />">${details}</a></li>
-											<li><a href="#">${editChange}</a></li>
+											<li><a href="<c:url value="/Controller?command=change_tariff_plan&userId=${uRequest.getUserId()}&tariffId=${uRequest.getTariffId()}&requestId=${uRequest.getId()}" />">${editChange}</a></li>
 											<li><a
 												href="<c:url value="/Controller?command=delete_request&requestId=${uRequest.getId()}" />">${editDelete}</a></li>
 										</ul>

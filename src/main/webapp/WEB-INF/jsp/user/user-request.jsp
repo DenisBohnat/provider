@@ -18,6 +18,7 @@
 <fmt:message bundle="${loc}" key="local.tariff.name" var="nameT" />
 <fmt:message bundle="${loc}" key="local.edit.editSend" var="editSend" />
 <fmt:message bundle="${loc}" key="local.title.request" var="request" />
+<fmt:message bundle="${loc}" key="local.pageMessages.showRequest" var="showRequest" />
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -37,6 +38,7 @@
 		<div class="row content ">
 			<jsp:include page="/WEB-INF/jsp/static/left-sidebar.jsp"></jsp:include>
 			<div class="col-md-10 col-sm-9 main content">
+<h4 align="center">${showRequest}</h4>			
 				<c:choose>
 					<c:when test="${requestScope.haveRequest}">
 						<c:set var="request" value="${requestScope.curRequest}" />
@@ -54,14 +56,14 @@
 								<label class="control-label col-md-3 col-sm-3">${nameT}</label>
 								<div class="col-md-9 col-sm-9">
 									<input type="text" class="form-control" name="nameTariff"
-										value="${rTariff.getName()}">
+										value="${rTariff.getName()}" disabled>
 								</div>
 							</div>
 
 							<div class="form-group">
 								<label class="control-label col-md-3 col-sm-3">${description}</label>
 								<div class="col-md-9 col-sm-9">
-									<textarea class="form-control" name="description" rows="3">${request.getDescription()}</textarea>
+									<textarea class="form-control" name="description" rows="3" disabled>${request.getDescription()}</textarea>
 								</div>
 							</div>
 
@@ -69,7 +71,7 @@
 								<label class="control-label col-md-3 col-sm-3">${regDate}</label>
 								<div class="col-md-9 col-sm-9">
 									<input type="date" class="form-control datepicker"
-										name="regRequest" value="${request.getReqDate()}">
+										name="regRequest" value="${request.getReqDate()}" disabled>
 								</div>
 							</div>
 
@@ -86,8 +88,8 @@
 
 					</c:when>
 					<c:otherwise>
-						<form name="requestForm" class="form-horizontal" method="post"
-							action="Controller">
+						<form name="addRequestForm" class="form-horizontal" method="post"
+							action="Controller" onSubmit="return validateForm(event);">
 
 							<div class="form-group">
 								<input type="hidden" name="command" value="send_request" />
@@ -129,5 +131,22 @@
 		</div>
 	</div>
 	<jsp:include page="/WEB-INF/jsp/static/footer.jsp"></jsp:include>
+	
+<script type="text/javascript">	
+
+function validateForm(event)
+{
+	event.preventDefault();
+	if(document.addRequestForm.description.value=="") {
+		alert("Description can not be empty");
+		document.addRequestForm.description.focus();
+		return false;
+		}
+	else {
+        document.addRequestForm.submit();
+    }
+}
+
+</script>
 </body>
 </html>

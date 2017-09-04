@@ -35,6 +35,11 @@ public class OpenAllUsersCustomers implements Command {
 	private static final Logger logger = LogManager.getLogger(OpenAllUsersCustomers.class.getName());
 
 	/**
+	 * Identifier that indicates that the user is not an administrator
+	 */
+	private static final int NOT_ADMIN = 1;
+	
+	/**
 	 * Performs the command that gets list of all users-customers (user
 	 * entities) from the the service layer and passes it to the relevant JSP.
 	 * <p>
@@ -60,22 +65,23 @@ public class OpenAllUsersCustomers implements Command {
 			request.setAttribute(Attributes.ERROR_MESSAGE, ErrorMessages.WORK_USER_INFORMATION_POSSIBILITY);
 			request.getRequestDispatcher(JSPNames.INDEX_PAGE).forward(request, response);
 		} else {
-			if (Integer.valueOf(session.getAttribute(Attributes.ROLE).toString()) == 1) {
+			if (Integer.valueOf(session.getAttribute(Attributes.ROLE).toString()) == NOT_ADMIN) {
 				request.setAttribute(Attributes.ERROR_MESSAGE, ErrorMessages.WORK_USER_INFORMATION_POSSIBILITY);
-				// ???
 				request.getRequestDispatcher(JSPNames.INDEX_PAGE).forward(request, response);
 			} else {
 
 				int pageNumber = Integer.parseInt(request.getParameter(Attributes.PAGE_NUMBER));
-
+				int elementsPerPage = Integer.parseInt(request.getParameter(Attributes.ELEMENTS_PER_PAGE_ATTR));
+				
 				try {
 					ServiceFactory f = ServiceFactory.getInstance();
 					IUserService uService = f.getUserService();
-					int amountPage = uService.getNumberOfUserPages();
-					List<User> userList = uService.getUsersOnCurrentPage(pageNumber);
+					int amountPage = uService.getNumberOfUserPages(elementsPerPage);
+					List<User> userList = uService.getUsersOnCurrentPage(pageNumber,elementsPerPage);
 					request.setAttribute(Attributes.USERS_LIST, userList);
 					request.setAttribute(Attributes.IS_ADMIN, false);
 					request.setAttribute(Attributes.CURRENT_PAGE, pageNumber);
+					request.setAttribute(Attributes.ELEMENTS_PER_PAGE_ATTR, elementsPerPage);
 					request.setAttribute(Attributes.PAGE_AMOUNT, amountPage);
 					request.getRequestDispatcher(JSPNames.ADMIN_USERS_PAGE).forward(request, response);
 				} catch (GetUserServiceException e) {

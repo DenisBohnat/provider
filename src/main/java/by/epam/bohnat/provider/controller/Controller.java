@@ -7,9 +7,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
 import by.epam.bohnat.provider.command.Command;
 import by.epam.bohnat.provider.command.CommandHelper;
 
@@ -30,8 +27,6 @@ public class Controller extends HttpServlet {
 	 * The name of the request parameter, whose value is the name of the command
 	 */
 	private static final String COMMAND = "command";
-
-	private static final Logger logger = LogManager.getLogger(Controller.class.getName());
 
 	/**
 	 * Call the superclass constructor

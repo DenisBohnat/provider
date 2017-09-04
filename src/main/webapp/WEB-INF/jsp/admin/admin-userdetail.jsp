@@ -122,7 +122,7 @@
 										<label class="control-label col-md-3 col-sm-3">${password}</label>
 										<div class="col-md-9 col-sm-9">
 											<input type="password" class="form-control"
-												name="passwordUser" value="${user.getPassword()}">
+												name="passwordUser" value="">
 										</div>
 									</div>
 
@@ -161,6 +161,14 @@
 									<div class="form-group">
 										<div class="col-md-5 col-sm-5 col-md-offset-4 col-sm-offset-4">
 											<button type="submit" class="btn btn-primary">${editButton}</button>
+											
+											<c:choose>
+											<c:when test="${!requestScope.haveAccount && !requestScope.haveRequest}">
+											<a href="<c:url value="/Controller?command=delete_user&userId=${user.getId()}" />"
+												class="btn btn-primary" role="button">${editDelete}</a>
+											</c:when>
+											</c:choose>
+											
 											<a href="<c:url value="/Controller?command=cancel" />"
 												class="btn btn-primary" role="button">${editCancel}</a> <span
 												class="divider-vertical"> </span>
@@ -168,7 +176,6 @@
 									</div>
 
 								</form>
-
 
 							</div>
 
@@ -262,9 +269,10 @@
 											action="Controller">
 
 											<div class="form-group">
-												<input type="hidden" name="command"
-													value="change_tariff_plan" /> <input type="hidden"
-													name="tariffId" value="${rTariff.getId()}" />
+												<input type="hidden" name="command" value="change_tariff_plan" />
+												<input type="hidden" name="tariffId" value="${rTariff.getId()}" />
+												<input type="hidden" name="userId" value="${request.getUserId()}" />
+												<input type="hidden" name="requestId" value="${request.getId()}" />
 											</div>
 
 											<div class="form-group">
@@ -362,7 +370,7 @@
 								<label class="control-label col-md-3 col-sm-3">${password}</label>
 								<div class="col-md-9 col-sm-9">
 									<input type="password" class="form-control" name="passwordUser"
-										value="${user.getPassword()}">
+										value="">
 								</div>
 							</div>
 

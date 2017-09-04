@@ -16,4 +16,14 @@
 			<rtexprvalue>true</rtexprvalue>
 		</attribute>
 	</tag>
+	<tag>
+		<name>formatSelect</name>
+		<tag-class>by.epam.bohnat.provider.tag.FormatElementsPerPage</tag-class>
+		<body-content>empty</body-content>
+		<attribute>
+			<name>variants</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
 </taglib>
